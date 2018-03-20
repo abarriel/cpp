@@ -1,6 +1,5 @@
 #include "ClassContact.hpp"
 #include <iostream>
-#include <iomanip>
 
 void    err(int i, std::string str, int ext = 0) {
     std::string err[] = { "Invalid Command", "Only 8 contacts can be stored" };
@@ -48,9 +47,10 @@ int main(void) {
 
     while (1) {
         cmd = promptCmd();
-        // std::cout << cmd << std::endl;
         if (!cmd.compare("ADD"))
             addContact();
+        if (!cmd.compare("SEARCH"))
+            Contact::listContacts();
         if (!cmd.compare("EXIT"))
             exit(0);
         if (Contact::getIndex() == 9)

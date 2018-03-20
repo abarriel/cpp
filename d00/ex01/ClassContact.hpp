@@ -1,8 +1,6 @@
 #ifndef CLASSCONTACT_HPP
 # define CLASSCONTACT_HPP
 #include <iostream>
-// #define FIELDS std::string fields[] = { "first name", "last name", "nickname", "login", "postal address", "email address", "phone number", "birthday date", "favorite meal", "underwear color", "darkest secret"};
-// #define CMDS std::string cmds[] = { "ADD", "SEARCH", "EXIT" };
 #define LEN(cmds) sizeof(cmds) / sizeof(std::string)
 
 class Contact {
@@ -21,6 +19,7 @@ class Contact {
         std::string underwearColor;
         std::string darkestSecret;    
         static void getDetailsContact(int index);
+        static void listContacts(void);
         static int  getIndex(void);
     private:
         static int _index;
