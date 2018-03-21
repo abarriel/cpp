@@ -25,5 +25,5 @@ class Contact {
         static int _index;
         static Contact *_listContacts[8];
 };
-
+void board(void);
 #endif

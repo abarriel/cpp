@@ -39,10 +39,11 @@ void addContact() {
         std::cin >> *contact_fields[i];
     }
     std::cout << "User added :)" << std::endl;
-    Contact::getDetailsContact(0);
+    board();
+    // Contact::getDetailsContact(0);
 }
 
-int main(void) {
+void board(void) {
     std::string cmd;
 
     while (1) {
@@ -56,4 +57,8 @@ int main(void) {
         if (Contact::getIndex() == 9)
             err(1, cmd, 1);
     }
+}
+
+int main(void) {
+    board(); // little trick ;)
 }
