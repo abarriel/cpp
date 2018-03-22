@@ -1,7 +1,10 @@
 #custom
 .DS_Store
+.vscode
+a.out
 # Prerequisites
 *.d
+*.gch
 tester
 # Object files
 *.o
