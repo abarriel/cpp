@@ -7,7 +7,7 @@ Brain::Brain(void) {
     this->stupidity = 999;
 }
 
-const Brain *Brain::identify(void){
+const Brain *Brain::identify(void) const{
     return this;
 }
 

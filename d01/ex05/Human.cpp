@@ -5,14 +5,12 @@ Human::Human(void) {
     std::cout << "Human called" << std::endl;
 }
 
-Brain& Human::getBrain(void) {
-    Brain *b;
-    this->brain = b;
-    return *b;
+const Brain	&Human::getBrain( void ) const {
+    return this->brain;
 }
 
-const std::string Human::identify(void) {
-    return this->brain->identify();
+const Brain *Human::identify(void) const {
+    return this->brain.identify();
 }
 
 Human::~Human(void) {

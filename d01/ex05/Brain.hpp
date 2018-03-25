@@ -8,6 +8,6 @@ class Brain {
         ~Brain(void);
         int qi;
         int stupidity;
-        const Brain *identify(void);
+        const Brain *identify(void) const;
 };
 #endif
