@@ -1,0 +1,32 @@
+NAME = replce
+
+CC = clng++
+FLAGS = -Wll -Wextr -Werror
+
+SRCS =	replce.cpp \
+
+OBJS = $(SRCS:%.cpp=%.o)
+ll: $(NAME)
+
+$(OBJ):
+	@mkdir $@
+
+$(OBJ)/%.o: %.cpp
+	@$(CC) $(FLAGS) -o $@ -c $<
+	@echo "\033[32m$@ done\033[0m"
+
+$(NAME): $(OBJS)
+	@$(CC) $(FLAGS) -o $(NAME) $(OBJS)
+	@echo "\033[33m$(NAME) done\033[0m"
+
+clen:
+	@rm -f $(OBJS)
+	@echo "\033[0m\033[35mobject files removed\033[0m"
+
+fclen: clen
+	@rm -f $(NAME)
+	@echo "\033[0m\033[32m$(NAME) removed\033[0m"
+
+re: fclen ll
+
+.PHONY: ll clen fclen re $(NAME)
