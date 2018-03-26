@@ -1,14 +1,14 @@
-# Contact
-NAME = Contact
+# Fixed
+NAME = Fixed
 
 CC = clang++
 FLAGS = -Wall -Wextra -Werror
 
 INCLUDES = \
-ClassContact.hpp \
+ClassFixed.hpp \
 
 SRCS = \
-ClassContact.cpp \
+ClassFixed.cpp \
 main.cpp \
 
 OBJS = $(SRCS:%.cpp=%.o)
