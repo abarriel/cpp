@@ -12,7 +12,7 @@ public:
     int getRawBits(void) const;
     void setRawBits(int const raw);
 private:
-    int _value;
+    int _raw;
     const int  _bits;
 };
 // std::ostream& operator<<(std::ostream& o, Fixed const &i);
