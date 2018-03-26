@@ -16,7 +16,7 @@ std::string promptCmd() {
 
     while (1) {
         std::cout << "Enter your command (ADD | SEARCH | EXIT): ";
-        std::cin >> cmd;
+        std::getline(std::cin, cmd);
         for (i = 0; i < LEN(cmds); i++)
             if (!cmd.compare(cmds[i]))
                 break;
@@ -29,6 +29,8 @@ std::string promptCmd() {
 }
 
 void addContact() {
+    if (Contact::getIndex() == 8)
+        err(1, "ADD", 1);
     Contact c;
     const std::string fields[] = { "first name", "last name", "nickname", "login", "postal address", "email address", "phone number", "birthday date", "favorite meal", "underwear color", "darkest secret"};
     std::string *contact_fields[] = { &c.firstName, &c.lastName, &c.nickname, &c.login, &c.postalAddress, &c.email, &c.phoneNumber, &c.date, &c.favoriteMeal, &c.underwearColor, &c.darkestSecret };
@@ -36,7 +38,7 @@ void addContact() {
     for(int i = 0; i < LEN(fields); i++)
     {
         std::cout << "Enter your " << fields[i] << " : ";
-        std::cin >> *contact_fields[i];
+        std::getline(std::cin, *contact_fields[i]);        
     }
     std::cout << "User added :)" << std::endl;
     board();
@@ -54,8 +56,6 @@ void board(void) {
             Contact::listContacts();
         if (!cmd.compare("EXIT"))
             exit(0);
-        if (Contact::getIndex() == 9)
-            err(1, cmd, 1);
     }
 }
 

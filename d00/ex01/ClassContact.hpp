@@ -1,7 +1,8 @@
 #ifndef CLASSCONTACT_HPP
-# define CLASSCONTACT_HPP
+#define CLASSCONTACT_HPP
 #include <iostream>
 #define LEN(cmds) sizeof(cmds) / sizeof(std::string)
+
 
 class Contact {
     public:
@@ -23,7 +24,7 @@ class Contact {
         static int  getIndex(void);
     private:
         static int _index;
-        static Contact *_listContacts[8];
+        static Contact *_listContacts[7];
 };
 void board(void);
 #endif

@@ -3,7 +3,7 @@
 #include "ClassContact.hpp"
 
 int Contact::_index = 0;
-Contact *Contact::_listContacts[8] = { NULL };
+Contact *Contact::_listContacts[7] = { NULL };
 
 Contact::Contact(void) {
     // std::cout << "Constructor called" << std::endl;
@@ -18,6 +18,11 @@ Contact::~Contact(void) {
 void pad(std::string s, int flag = 2){
     if (!flag)
         std::cout << "|";
+    if (s.length() > 10)
+        {
+            s.resize(9);
+            s += ".";
+        }
     std::cout << std::setw(10) << s << "|";
     if (flag == 1)
         std::cout << std::endl << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯" << std::endl;
