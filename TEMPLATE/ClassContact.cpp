@@ -3,7 +3,7 @@
 #include <iostream>
 
 Contact::Contact(void) {
-    std::cout << "Constructor Contact called" << std::endl;
+    std::cout << "Default Constructor Contact called(void)" << std::endl;
 }
 
 Contact::Contact(Contact const & src) {

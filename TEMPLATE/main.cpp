@@ -1,3 +1,6 @@
+// typedef void(Human::*action)(std::string const & target); 
+// action members[] = {&Human::meleeAttack,...};
+// CALL_MEMBER_FN(this, members[i])(target);
 #include "ClassContact.hpp"
 #include <iostream>
 #define LEN(cmds) sizeof(cmds) / sizeof(std::string)
@@ -14,7 +17,3 @@ void    err(int i, std::string str, int ext = 0) {
 int     main(void) {
     return (0);
 }
-
-// typedef void(Human::*action)(std::string const & target); 
-// action members[] = {&Human::meleeAttack,...};
-// CALL_MEMBER_FN(this, members[i])(target);

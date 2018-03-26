@@ -2,7 +2,7 @@
 #include "ClassFixed.hpp"
 #include <iostream>
 
-Fixed::Fixed(void) {
+Fixed::Fixed(void):  {
     std::cout << "Constructor Fixed called" << std::endl;
 }
 
