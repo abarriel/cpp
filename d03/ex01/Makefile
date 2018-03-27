@@ -6,6 +6,7 @@ FLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRCS = \
 FragTrap.cpp \
+ScavTrap.cpp\
 main.cpp \
 
 OBJS = $(SRCS:%.cpp=%.o)

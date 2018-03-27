@@ -30,9 +30,3 @@ private:
 // std::ostream& operator<<(std::ostream& o, FragTrap const &i);
 #endif
 // FR4G-TP <name> attacks <target> at range, causing <damage> points of damage !
-
-// A few constraints :
-// • The number of hit points can never exceed the number of max hit points. Same for
-// the energy points. If, for example, you repair too much HP, then you set them to
-// the max HP number. In the same way, they can’t fall below 0.
-// • When you take damage, you have to take your armor damage reduction into account
