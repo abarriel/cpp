@@ -2,10 +2,7 @@
 NAME = Fixed
 
 CC = clang++
-FLAGS = -Wall -Wextra -Werror
-
-INCLUDES = \
-ClassFixed.hpp \
+FLAGS = -Wall -Wextra -Werror  -std=c++98
 
 SRCS = \
 ClassFixed.cpp \
@@ -15,8 +12,8 @@ OBJS = $(SRCS:%.cpp=%.o)
 
 all: $(NAME)
 
-$(OBJ)/%.o: $(SRC)/%.cpp $(INCLUDES)
-	@$(CC) $(FLAGS) $(INCLUDES) -o $@ -c $<
+$(OBJ)/%.o: $(SRC)/%.cpp
+	@$(CC) $(FLAGS) -o $@ -c $<
 	@echo "\033[32m$@ done\033[0m"
 
 $(NAME): $(OBJS)

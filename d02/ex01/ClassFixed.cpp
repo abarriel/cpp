@@ -1,13 +1,24 @@
 // Fixed
 #include "ClassFixed.hpp"
 #include <iostream>
+#include <cmath>
 
-Fixed::Fixed(void): _raw(0), _bits(8) {
+const int Fixed::_bits = 8;
+
+Fixed::Fixed(void): _raw(0) {
     (void)Fixed::_bits;
     std::cout << "Default Constructor Fixed called" << std::endl;
 }
 
-Fixed::Fixed(Fixed const & src): _bits(8) {
+Fixed::Fixed(int const value): _raw(value) {
+    std::cout << "Int Constructor Fixed called" << std::endl;
+}
+
+Fixed::Fixed(float const value): _raw(value / (1 << 8)) {
+    std::cout << "Float Constructor Fixed called" << std::endl;
+}
+
+Fixed::Fixed(Fixed const & src) {
     std::cout << "Copy constructor called" << std::endl;
     *this = src;
 }
@@ -25,6 +36,19 @@ int Fixed::getRawBits() const{
 
 void Fixed::setRawBits(int const raw) {
     this->_raw = raw;
+}
+
+float Fixed::toFloat(void) const {
+    return this->_raw;
+}
+
+int Fixed::toInt(void) const {
+    return this->_raw;
+}
+
+std::ostream& operator<<(std::ostream& o, Fixed const &i) {
+    o << i.toFloat();
+    return o;
 }
 
 Fixed::~Fixed(void) {
