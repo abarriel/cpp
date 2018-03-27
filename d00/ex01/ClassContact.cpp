@@ -27,6 +27,39 @@ void pad(std::string s, int flag = 2){
     if (flag == 1)
         std::cout << std::endl << "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯" << std::endl;
 }
+void Contact::set_firstName(std::string acc) {
+    this->firstName = acc;
+}
+void Contact::set_lastName(std::string acc) {
+    this->lastName = acc;
+}
+void Contact::set_nickname(std::string acc) {
+    this->nickname = acc;
+}
+void Contact::set_login(std::string acc) {
+    this->login = acc;
+}
+void Contact::set_postalAddress(std::string acc) {
+    this->postalAddress = acc;
+}
+void Contact::set_email(std::string acc) {
+    this->email = acc;
+}
+void Contact::set_phoneNumber(std::string acc) {
+    this->phoneNumber = acc;
+}
+void Contact::set_date(std::string acc) {
+    this->date = acc;
+}
+void Contact::set_favoriteMeal(std::string acc) {
+    this->favoriteMeal = acc;
+}
+void Contact::set_underwearColor(std::string acc) {
+    this->underwearColor = acc;
+}
+void Contact::set_darkestSecret(std::string acc) {
+    this->darkestSecret = acc;
+}
 
 void Contact::listContacts(void) {
     int index;

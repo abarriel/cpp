@@ -8,6 +8,20 @@ class Contact {
     public:
         Contact(void);
         ~Contact(void);
+        static void listContacts(void);
+        void set_firstName(std::string const acc);
+        void set_lastName(std::string const acc);
+        void set_nickname(std::string const acc);
+        void set_login(std::string const acc);
+        void set_postalAddress(std::string const acc);
+        void set_email(std::string const acc);
+        void set_phoneNumber(std::string const acc);
+        void set_date(std::string const acc);
+        void set_favoriteMeal(std::string const acc);
+        void set_underwearColor(std::string const acc);
+        void set_darkestSecret(std::string const acc);
+        static int  getIndex(void);
+    private:
         std::string firstName;
         std::string lastName;
         std::string nickname;
@@ -20,9 +34,6 @@ class Contact {
         std::string underwearColor;
         std::string darkestSecret;    
         static void getDetailsContact(int index);
-        static void listContacts(void);
-        static int  getIndex(void);
-    private:
         static int _index;
         static Contact *_listContacts[7];
 };
