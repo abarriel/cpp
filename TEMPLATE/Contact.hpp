@@ -1,6 +1,6 @@
 // Contact
-#ifndef CLASSCONTACT_HPP
-#define CLASSCONTACT_HPP
+#ifndef CONTACT_HPP
+#define CONTACT_HPP
 #include <iostream>
 
 class Contact {

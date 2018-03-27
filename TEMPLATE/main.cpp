@@ -1,7 +1,7 @@
 // typedef void(Human::*action)(std::string const & target); 
 // action members[] = {&Human::meleeAttack,...};
 // CALL_MEMBER_FN(this, members[i])(target);
-#include "ClassContact.hpp"
+#include "Contact.hpp"
 #include <iostream>
 #define LEN(cmds) sizeof(cmds) / sizeof(std::string)
 #define CALL_MEMBER_FN(object,ptrToMember)  ((object)->*(ptrToMember))
