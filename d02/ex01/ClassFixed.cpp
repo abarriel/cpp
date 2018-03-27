@@ -5,17 +5,26 @@
 
 const int Fixed::_bits = 8;
 
+#define FRAC(v) (1 << v)
+#define INT_FIXED(x, bits) ((x) << bits)
+#define FIXED_INT(x, bits) ((x) >> bits)
+#define FLOAT_FIXED(x, bits) (x * FRAC(bits))
+#define FIXED_FLOAT(x, bits) (((float)(x)) / FRAC(bits))
+
+// #define FIXED_MULT(x, y) ((x)*(y) >> FRACT_BITS)
+// #define FIXED_DIV(x, y) (((x)<<FRACT_BITS) / (y))
+
 Fixed::Fixed(void): _raw(0) {
     (void)Fixed::_bits;
     std::cout << "Default Constructor Fixed called" << std::endl;
 }
 
-Fixed::Fixed(int const value): _raw(value) {
-    std::cout << "Int Constructor Fixed called" << std::endl;
+Fixed::Fixed(int const value): _raw(INT_FIXED(value, this->_bits)) {
+    std::cout << "Int Constructor Fixed called with " << value << " to " << this->_raw << std::endl;
 }
 
-Fixed::Fixed(float const value): _raw(value / (1 << 8)) {
-    std::cout << "Float Constructor Fixed called" << std::endl;
+Fixed::Fixed(float const value): _raw(roundf(FLOAT_FIXED(value, this->_bits))) {
+    std::cout << "Float Constructor Fixed called with " << value << " to " << this->_raw << std::endl;
 }
 
 Fixed::Fixed(Fixed const & src) {
@@ -25,12 +34,12 @@ Fixed::Fixed(Fixed const & src) {
 
 Fixed& Fixed::operator=(Fixed const & rhs) {
     std::cout << "Assignation operator called" << std::endl;
-    this->_raw += rhs.getRawBits();
+    this->_raw = rhs.getRawBits();
     return *this;
 }
 
 int Fixed::getRawBits() const{
-    std::cout << "getRawBits member function called" << std::endl;
+    // std::cout << "getRawBits member function called" << std::endl;
     return this->_raw;
 }
 
@@ -39,11 +48,11 @@ void Fixed::setRawBits(int const raw) {
 }
 
 float Fixed::toFloat(void) const {
-    return this->_raw;
+    return FIXED_FLOAT(this->_raw, this->_bits);
 }
 
 int Fixed::toInt(void) const {
-    return this->_raw;
+    return FIXED_FLOAT(this->_raw, this->_bits);
 }
 
 std::ostream& operator<<(std::ostream& o, Fixed const &i) {
