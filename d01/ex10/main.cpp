@@ -10,6 +10,8 @@ int main(int ac, char **av) {
 			buff.clear();
 			std::cin >> buff;
 			std::cout << buff << std::endl;
+            if (std::cin.eof())
+                return 0;
 		}
 	for (int i = 1; i < ac; i++) {
         std::ifstream ifs(av[i]);

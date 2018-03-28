@@ -7,6 +7,8 @@ int main(void) {
     std::string fl;
     while (std::cout << "append to a file ? (yes or no): ") {
         std::cin >> rep;
+        if (std::cin.eof())
+            break ;
         if (rep == "yes")
             fl = "file";
         else if (rep == "no")

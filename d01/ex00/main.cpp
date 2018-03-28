@@ -1,4 +1,5 @@
 #include "Pony.hpp"
+
 void ponyOnTheHeap(void) 
 {
     Pony *pony = new Pony();

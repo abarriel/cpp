@@ -1,14 +1,10 @@
 #include <iostream>
 #include "Human.hpp"
 
-int main(int ac, char **av) {
+int main(void) {
     Human h;
-    
-    if (ac != 3)
-    {
-        std::cout << "wrong argument" << std::endl;
-        return (0);
-    }
-    h.action(av[1], av[2]);
+    h.action("meleeAttack", "Donald Trump");
+    h.action("rangedAttack", "Donald Trump");
+    h.action("intimidatingShout", "Donald Trump");
     return (0);
 }

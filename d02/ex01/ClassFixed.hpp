@@ -17,7 +17,9 @@ public:
     void setRawBits(int const raw);
 private:
     int _raw;
+    // FIXED POINT = BINARY POINT 
     static const int  _bits;
 };
 std::ostream& operator<<(std::ostream& o, Fixed const &i);
 #endif
+

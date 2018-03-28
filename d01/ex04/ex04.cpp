@@ -7,8 +7,8 @@ int main(void) {
  std::string &ref = str;
 
  std::cout << "string: " << str << std::endl;   
- std::cout << "ptr: " << str << std::endl;   
- std::cout << "ref: " << str << std::endl;   
+ std::cout << "ptr: " << *ptr << std::endl;   
+ std::cout << "ref: " << ref << std::endl;   
 
  return (0);
 }

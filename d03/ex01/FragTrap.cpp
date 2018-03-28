@@ -2,12 +2,14 @@
 #include "FragTrap.hpp"
 #include <iostream>
 
-FragTrap::FragTrap(void): name("FragTrap"), hitPoints(100), maxhitPoints(100), energyPoints(100), maxEnergyPoints(100),
+FragTrap::FragTrap(void)
+    : name("FragTrap"), hitPoints(100), maxhitPoints(100), energyPoints(100),maxEnergyPoints(100),
     level(1), meleeAttackDamage(30), rangedAttackDamage(20), ArmorDamageReduction(5)  {
     std::cout << this->name << " -- start bootup sequence" << std::endl;
 }
 
-FragTrap::FragTrap(std::string name): name(name), hitPoints(100), maxhitPoints(100), energyPoints(100), maxEnergyPoints(100),
+FragTrap::FragTrap(std::string name)
+    : name(name), hitPoints(100), maxhitPoints(100), energyPoints(100), maxEnergyPoints(100),
     level(1), meleeAttackDamage(30), rangedAttackDamage(20), ArmorDamageReduction(5)  {
     std::cout << name << " -- start bootup sequence" << std::endl;
 }

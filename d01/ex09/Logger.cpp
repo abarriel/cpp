@@ -29,11 +29,11 @@ std::string Logger::makeLogEntry(std::string log) {
 }
 
 Logger::Logger(std::string name): _name(name) {
-    std::cout << "constructor called" << std::endl;
+    // std::cout << "constructor called" << std::endl;
 }
 
 Logger::~Logger() {
-    std::cout << "destructor called" << std::endl;
+    // std::cout << "destructor called" << std::endl;
 }
 
 void Logger::log(std::string const & dest, std::string const & message) {

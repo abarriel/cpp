@@ -6,8 +6,9 @@ class Brain {
     public:
         Brain(void);
         ~Brain(void);
+        const Brain *identify(void) const;
+    private:
         int qi;
         int stupidity;
-        const Brain *identify(void) const;
 };
 #endif

@@ -1,7 +1,7 @@
 #include <iostream>
 #include "Human.hpp"
 #define LEN(cmds) sizeof(cmds) / sizeof(std::string)
-#define CALL_MEMBER_FN(object,ptrToMember)  ((object)->*(ptrToMember))
+#define CALL_MEMBER_FN(object, ptrToMember)  ((object)->*(ptrToMember))
 
 // Human::Human(void) {
 //     std::cout << "Constructor called" << std::endl;
@@ -12,17 +12,16 @@
 // }
 
 void Human::meleeAttack(std::string const & target) {
-    std::cout << "meleeAttack " << target << std::endl;
+    std::cout << "atttackkkkkkk with a meleeAttack " << target << std::endl;
 }
 
 void Human::rangedAttack(std::string const & target) {
-    std::cout << "rangedAttack " << target << std::endl;
+    std::cout << "BOOM BIM BAMMMMMMMM I ATTACKED WITH A rangedAttack " << target << std::endl;
 }
 
 void Human::intimidatingShout(std::string const & target) {
-    std::cout << "intimidatingShout " << target << std::endl;
+    std::cout << "tssss...... intimidatingShout " << target << std::endl;
 }
-
 
 void Human::action(std::string const & action_name, std::string const & target) {
     const std::string actions[] = { "meleeAttack", "rangedAttack", "intimidatingShout" };
@@ -34,7 +33,6 @@ void Human::action(std::string const & action_name, std::string const & target) 
         if (actions[i] == action_name)
          {
             CALL_MEMBER_FN(this, members[i])(target);
-            // (this)->*(members[i])(target);
             break;
          }
     }

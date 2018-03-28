@@ -1,26 +1,24 @@
 NAME = cato9tails
 
 CC = clang++
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic
 
-SRCS =	main.cpp \
+SRCS = \
+main.cpp \
 
-OBJS = $(SRCS:%.cpp=%.o)
+OBJ = $(SRCS:%.s=./%.o)
 all: $(NAME)
 
-$(OBJ):
-	@mkdir $@
-
-$(OBJ)/%.o: %.cpp
+%.o: %.cpp
 	@$(CC) $(FLAGS) -o $@ -c $<
 	@echo "\033[32m$@ done\033[0m"
 
-$(NAME): $(OBJS)
-	@$(CC) $(FLAGS) -o $(NAME) $(OBJS)
+$(NAME): $(OBJ)
+	@$(CC) $(FLAGS) -o $(NAME) $(OBJ)
 	@echo "\033[33m$(NAME) done\033[0m"
 
 clean:
-	@rm -f $(OBJS)
+	@rm -f $(OBJ)
 	@echo "\033[0m\033[35mobject files removed\033[0m"
 
 fclean: clean
