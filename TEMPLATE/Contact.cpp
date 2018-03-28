@@ -6,11 +6,7 @@ Contact::Contact(void) {
     return ;
 }
 
-Contact::Contact(Contact const & src) {
-	std::cout << "(Contact) copy constructor called" << std::endl;
-	*this = src;
-    return ;
-}
+/* function members */
 
 /* override */
 Contact& Contact::operator=(Contact const & rhs) {
@@ -24,6 +20,11 @@ std::ostream& operator<<(std::ostream& out, Contact const &i) {
 	return out;
 }
 
+Contact::Contact(Contact const & src) {
+	std::cout << "(Contact) copy constructor called" << std::endl;
+	*this = src;
+    return ;
+}
 /* Destructors */
 Contact::~Contact(void) {
 	std::cout << "(Contact) destructor Contact called" << std::endl;

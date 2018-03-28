@@ -1,9 +1,12 @@
 #include "Enemy.hpp"
 
-/* Constructors */
 Enemy::Enemy(void) {
 	std::cout << "(Enemy) default constructor called" << std::endl;
     return ;
+}
+
+Enemy::Enemy(int hp, std::string const & type): hp(hp), type(type) {
+	std::cout << "(Enemy) " << type << "constructor called" << std::endl;
 }
 
 Enemy::Enemy(Enemy const & src) {
@@ -12,15 +15,28 @@ Enemy::Enemy(Enemy const & src) {
     return ;
 }
 
+void Enemy::takeDamage(int dam) {
+	if (dam < 0)
+		return ;
+	this->hp -= dam;
+	if (this->hp < 0)
+		this->hp = 0;
+}
+
+std::string Enemy::getType() const {
+	return this->type;
+}
+
 /* override */
 Enemy& Enemy::operator=(Enemy const & rhs) {
 	std::cout << "(Enemy) assignation operator called";
-	/* add logic */
+	this->type = rhs.type;
+	this->hp = rhs.hp;
 	return *this;
 }
 
 std::ostream& operator<<(std::ostream& out, Enemy const &i) {
-	out << "(Enemy) WARNING ! ADD A LOGIC <<" << std::endl;
+	out << "(Enemy) Hello my name is " << i.getType() << " !"<< std::endl;
 	return out;
 }
 

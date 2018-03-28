@@ -3,17 +3,17 @@
 # include <iostream>
 
 class Contact {
+	private:
 	public:
 		/* Constructors - do not delete the default constructor (void) */
 		Contact(void);
-
+		/* function members (or methods) */
 		/* override */
 		Contact(Contact const & src);
 		Contact& operator=(Contact const & rhs);
 	
 		/* Destructors */
 		~Contact(void);
-	private:
 };
 
 std::ostream& operator<<(std::ostream& out, Contact const &i);

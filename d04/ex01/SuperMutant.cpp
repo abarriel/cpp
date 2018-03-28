@@ -1,8 +1,8 @@
 #include "SuperMutant.hpp"
 
 /* Constructors */
-SuperMutant::SuperMutant(void) {
-	std::cout << "(SuperMutant) default constructor called" << std::endl;
+SuperMutant::SuperMutant(void): Enemy(170, "Super Mutant")  {
+	std::cout << "(SuperMutant) Gaaah. Me want smash heads !" << std::endl;
     return ;
 }
 
@@ -15,17 +15,26 @@ SuperMutant::SuperMutant(SuperMutant const & src) {
 /* override */
 SuperMutant& SuperMutant::operator=(SuperMutant const & rhs) {
 	std::cout << "(SuperMutant) assignation operator called";
-	/* add logic */
+	this->type = rhs.type;
+	this->hp = rhs.hp;
 	return *this;
 }
 
+void SuperMutant::takeDamage(int dam) {
+	if ((dam - 3) < 0)
+		return ;
+	this->hp -= (dam - 3);
+	if (this->hp < 0)
+		this->hp = 0;
+}
+
 std::ostream& operator<<(std::ostream& out, SuperMutant const &i) {
-	out << "(SuperMutant) WARNING ! ADD A LOGIC <<" << std::endl;
+	out << "(SuperMutant) Hello my tape is " << i.getType() << " !"<< std::endl;
 	return out;
 }
 
 /* Destructors */
 SuperMutant::~SuperMutant(void) {
-	std::cout << "(SuperMutant) destructor SuperMutant called" << std::endl;
+	std::cout << "(SuperMutant) Aaargh ..." << std::endl;
     return ;
 }
