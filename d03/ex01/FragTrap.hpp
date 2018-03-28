@@ -5,7 +5,8 @@
 
 class FragTrap {
 public:
-    FragTrap(std::string name); // Canonical
+    FragTrap(void); // Canonical
+    FragTrap(std::string name);
     FragTrap(FragTrap const & src); // Canonical
     ~FragTrap(void); // Canonical
     FragTrap& operator=(FragTrap const & rhs); // Canonical

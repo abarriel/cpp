@@ -2,6 +2,11 @@
 #include "ScavTrap.hpp"
 #include <iostream>
 
+ScavTrap::ScavTrap(void): name("ScavTrap"), hitPoints(100), maxhitPoints(100), energyPoints(50), maxEnergyPoints(50),
+    level(1), meleeAttackDamage(20), rangedAttackDamage(15), ArmorDamageReduction(3)  {
+    std::cout << name << " -- initialize challenges and ready to fight!" << std::endl;
+}
+
 ScavTrap::ScavTrap(std::string name): name(name), hitPoints(100), maxhitPoints(100), energyPoints(50), maxEnergyPoints(50),
     level(1), meleeAttackDamage(20), rangedAttackDamage(15), ArmorDamageReduction(3)  {
     std::cout << name << " -- initialize challenges and ready to fight!" << std::endl;
@@ -13,7 +18,16 @@ ScavTrap::ScavTrap(ScavTrap const & src) {
 }
 
 ScavTrap& ScavTrap::operator=(ScavTrap const & rhs) {
-    std::cout << "Assignation operator called";
+    std::cout << "Assignation operator called" << std::endl;
+    this->name = rhs.name;
+    this->hitPoints = rhs.hitPoints;
+    this->maxhitPoints = rhs.maxhitPoints;
+    this->energyPoints = rhs.energyPoints;
+    this->maxEnergyPoints = rhs.maxEnergyPoints;
+    this->level = rhs.level;
+    this->meleeAttackDamage = rhs.meleeAttackDamage;
+    this->rangedAttackDamage = rhs.rangedAttackDamage;
+    this->ArmorDamageReduction = rhs.ArmorDamageReduction;
     return *this;
 }
 

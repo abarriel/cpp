@@ -2,6 +2,11 @@
 #include "FragTrap.hpp"
 #include <iostream>
 
+FragTrap::FragTrap(void): name("FragTrap"), hitPoints(100), maxhitPoints(100), energyPoints(100), maxEnergyPoints(100),
+    level(1), meleeAttackDamage(30), rangedAttackDamage(20), ArmorDamageReduction(5)  {
+    std::cout << this->name << " -- start bootup sequence" << std::endl;
+}
+
 FragTrap::FragTrap(std::string name): name(name), hitPoints(100), maxhitPoints(100), energyPoints(100), maxEnergyPoints(100),
     level(1), meleeAttackDamage(30), rangedAttackDamage(20), ArmorDamageReduction(5)  {
     std::cout << name << " -- start bootup sequence" << std::endl;
@@ -13,7 +18,16 @@ FragTrap::FragTrap(FragTrap const & src) {
 }
 
 FragTrap& FragTrap::operator=(FragTrap const & rhs) {
-    std::cout << "Assignation operator called";
+    std::cout << "Assignation operator called" << std::endl;
+    this->name = rhs.name;
+    this->hitPoints = rhs.hitPoints;
+    this->maxhitPoints = rhs.maxhitPoints;
+    this->energyPoints = rhs.energyPoints;
+    this->maxEnergyPoints = rhs.maxEnergyPoints;
+    this->level = rhs.level;
+    this->meleeAttackDamage = rhs.meleeAttackDamage;
+    this->rangedAttackDamage = rhs.rangedAttackDamage;
+    this->ArmorDamageReduction = rhs.ArmorDamageReduction;
     return *this;
 }
 

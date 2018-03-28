@@ -15,32 +15,39 @@ void    err(int i, std::string str, int ext = 0) {
 }
 
 int     main(void) {
-    FragTrap *wolverine = new FragTrap("wolverine");
+    FragTrap wolverine("wolverine");
+    FragTrap a;
+    
+    
 
-    wolverine->infos();
-    wolverine->rangedAttack("Dr Strange");
-    wolverine->meleeAttack("Dr Strange and Freewer");
-    wolverine->takeDamage(0);
-    wolverine->takeDamage(1001000000);
-    wolverine->takeDamage(2);
-    wolverine->takeDamage(2);
-    wolverine->infos();
-    wolverine->beRepaired(-2);
-    wolverine->beRepaired(2);
-    wolverine->beRepaired(5552);
-    wolverine->infos();
-    wolverine->takeDamage(2);
-    wolverine->vaulthunter_dot_exe("Boo");
-    wolverine->vaulthunter_dot_exe("Boo");
-    wolverine->vaulthunter_dot_exe("Boo");
-    wolverine->infos();
-    wolverine->vaulthunter_dot_exe("Boo");
-    wolverine->vaulthunter_dot_exe("Boo");
-    wolverine->takeDamage(2);
-    wolverine->takeDamage(2);
-    wolverine->rangedAttack("Dr Strange");
-    wolverine->meleeAttack("Dr Strange and Freewer");
-    wolverine->infos();
-    delete wolverine;
+    wolverine.infos();
+    wolverine.rangedAttack("Dr Strange");
+    wolverine.meleeAttack("Dr Strange and Freewer");
+    wolverine.takeDamage(0);
+    wolverine.takeDamage(1001000000);
+    wolverine.takeDamage(2);
+    wolverine.takeDamage(2);
+    wolverine.infos();
+    a = wolverine;
+    wolverine.infos();
+    a.infos();
+    FragTrap b(a);
+    b.infos();
+    wolverine.beRepaired(-2);
+    wolverine.beRepaired(2);
+    wolverine.beRepaired(5552);
+    wolverine.infos();
+    wolverine.takeDamage(2);
+    wolverine.vaulthunter_dot_exe("Boo");
+    wolverine.vaulthunter_dot_exe("Boo");
+    wolverine.vaulthunter_dot_exe("Boo");
+    wolverine.infos();
+    wolverine.vaulthunter_dot_exe("Boo");
+    wolverine.vaulthunter_dot_exe("Boo");
+    wolverine.takeDamage(2);
+    wolverine.takeDamage(2);
+    wolverine.rangedAttack("Dr Strange");
+    wolverine.meleeAttack("Dr Strange and Freewer");
+    wolverine.infos();
     return (0);
 }

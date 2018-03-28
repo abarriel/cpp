@@ -5,7 +5,8 @@
 
 class ScavTrap {
 public:
-    ScavTrap(std::string name); // Canonical
+    ScavTrap(void); // Canonical
+    ScavTrap(std::string name);
     ScavTrap(ScavTrap const & src); // Canonical
     ~ScavTrap(void); // Canonical
     ScavTrap& operator=(ScavTrap const & rhs); // Canonical
