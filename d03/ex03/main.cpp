@@ -36,6 +36,7 @@ int     main(void) {
     drquine.infos();
     ninja.ninjaShoeBox(drquine);
     drquine.infos();
+    //
     // wolverine.rangedAttack("Dr Strange");
     // drquine.infos();
     // drquine.rangedAttack("Dr Strange");
