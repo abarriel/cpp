@@ -5,13 +5,14 @@
 
 class Victim {
 public:
-    Victim(void); // Canonical constructor default (void!!!!!!)
     Victim(std::string name);
     Victim(Victim const & src); // Canonical
-    ~Victim(void); // Canonical
+    virtual ~Victim(void); // Canonical
     Victim& operator=(Victim const & rhs); // Canonical
     std::string getName(void) const;
-private:
+    virtual void getPolymorphed(void) const;
+protected:
+    Victim(void); // Canonical constructor default (void!!!!!!)
     std::string name;
 };
 std::ostream& operator<<(std::ostream& o, Victim const &i);

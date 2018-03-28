@@ -2,6 +2,7 @@
 #ifndef SORCERER_HPP
 #define SORCERER_HPP
 #include <iostream>
+#include "Victim.hpp"
 
 class Sorcerer {
 public:
@@ -11,6 +12,7 @@ public:
     Sorcerer& operator=(Sorcerer const & rhs); // Canonical
     std::string getName(void) const;
     std::string getTitle(void) const;
+    void polymorph(Victim const &victim) const;
 private:
     Sorcerer(void); // Canonical constructor default (void!!!!!!)
     std::string name;

@@ -15,8 +15,13 @@ Victim::Victim(Victim const & src) {
     *this = src;
 }
 
+void Victim::getPolymorphed(void) const {
+    std::cout << this->name << " has been turned into a cute little sheep !" << std::endl;
+}
+
 Victim& Victim::operator=(Victim const & rhs) {
     std::cout << "Assignation operator called";
+    this->name = rhs.name;
     return *this;
 }
 
@@ -25,7 +30,7 @@ std::string Victim::getName(void) const{
 }
 
 std::ostream& operator<<(std::ostream& o, Victim const &i) {
-    o << "I am " << i.getName() << " and I like otters !";
+    o << "I'm " << i.getName() << " and I like otters !" << std::endl;
     return o;
 }
 

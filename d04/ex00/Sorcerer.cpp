@@ -17,7 +17,13 @@ Sorcerer::Sorcerer(Sorcerer const & src) {
 
 Sorcerer& Sorcerer::operator=(Sorcerer const & rhs) {
     std::cout << "Assignation operator called";
+    this->name = rhs.name;
+    this->title = title;
     return *this;
+}
+
+void Sorcerer::polymorph(Victim const & victim) const {
+    victim.getPolymorphed();
 }
 
 std::string Sorcerer::getName(void) const {
@@ -25,13 +31,14 @@ std::string Sorcerer::getName(void) const {
 }
 
 std::string Sorcerer::getTitle(void) const {
-    return this->name;
+    return this->title;
 }
 
 std::ostream& operator<<(std::ostream& o, Sorcerer const &i) {
-    o << "I am " << i.getName() << ", " << i.getTitle() << ", and I like ponies!";
+    o << "I am " << i.getName() << ", " << i.getTitle() << ", and I like ponies !" << std::endl;
     return o;
 }
+
 Sorcerer::~Sorcerer(void) {
     std::cout << this->name << ", " << this->title << ", is dead. Consequences will never be the same !" << std::endl;
 }
