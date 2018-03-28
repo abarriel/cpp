@@ -1,11 +1,13 @@
-# Contact
-NAME = Contact
+# Peon
+NAME = Peon
 
 CC = clang++
 FLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic
 
 SRCS = \
-Contact.cpp \
+Peon.cpp \
+Sorcerer.cpp \
+Victim.cpp \
 main.cpp \
 
 OBJ = $(SRCS:%.s=./%.o)
