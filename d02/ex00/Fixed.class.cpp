@@ -1,5 +1,5 @@
 // Fixed
-#include "ClassFixed.hpp"
+#include "Fixed.class.hpp"
 #include <iostream>
 
 Fixed::Fixed(void): _raw(0), _bits(8) {
@@ -14,7 +14,7 @@ Fixed::Fixed(Fixed const & src): _bits(8) {
 
 Fixed& Fixed::operator=(Fixed const & rhs) {
     std::cout << "Assignation operator called" << std::endl;
-    this->_raw += rhs.getRawBits();
+    this->_raw = rhs.getRawBits();
     return *this;
 }
 

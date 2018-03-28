@@ -1,5 +1,5 @@
 // Fixed
-#include "ClassFixed.hpp"
+#include "Fixed.class.hpp"
 #include <iostream>
 #include <cmath>
 
