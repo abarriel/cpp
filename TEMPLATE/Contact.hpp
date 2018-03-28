@@ -5,7 +5,7 @@
 
 class Contact {
 public:
-    Contact(void); // Canonical
+    Contact(void); // Canonical constructor default (void!!!!!!)
     Contact(Contact const & src); // Canonical
     ~Contact(void); // Canonical
     Contact& operator=(Contact const & rhs); // Canonical
