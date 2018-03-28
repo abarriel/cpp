@@ -1,21 +1,31 @@
-// Contact
 #include "Contact.hpp"
-#include <iostream>
 
+/* Constructors */
 Contact::Contact(void) {
-    std::cout << "Default Constructor Contact called(void)" << std::endl;
+	std::cout << "(Contact) default constructor called" << std::endl;
+    return ;
 }
 
 Contact::Contact(Contact const & src) {
-    std::cout << "Copy constructor called" << std::endl;
-    *this = src;
+	std::cout << "(Contact) copy constructor called" << std::endl;
+	*this = src;
+    return ;
 }
 
+/* override */
 Contact& Contact::operator=(Contact const & rhs) {
-    std::cout << "Assignation operator called";
-    return *this;
+	std::cout << "(Contact) assignation operator called";
+	/* add logic */
+	return *this;
 }
 
+std::ostream& operator<<(std::ostream& out, Contact const &i) {
+	out << "(Contact) WARNING ! ADD A LOGIC <<" << std::endl;
+	return out;
+}
+
+/* Destructors */
 Contact::~Contact(void) {
-    std::cout << "Destructor Contact called" << std::endl;
+	std::cout << "(Contact) destructor Contact called" << std::endl;
+    return ;
 }

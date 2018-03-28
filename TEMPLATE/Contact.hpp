@@ -1,15 +1,21 @@
-// Contact
 #ifndef CONTACT_HPP
-#define CONTACT_HPP
-#include <iostream>
+# define CONTACT_HPP
+# include <iostream>
 
 class Contact {
-public:
-    Contact(void); // Canonical constructor default (void!!!!!!)
-    Contact(Contact const & src); // Canonical
-    ~Contact(void); // Canonical
-    Contact& operator=(Contact const & rhs); // Canonical
-private:
+	public:
+		/* Constructors - do not delete the default constructor (void) */
+		Contact(void);
+
+		/* override */
+		Contact(Contact const & src);
+		Contact& operator=(Contact const & rhs);
+	
+		/* Destructors */
+		~Contact(void);
+	private:
 };
-// std::ostream& operator<<(std::ostream& o, Contact const &i);
+
+std::ostream& operator<<(std::ostream& out, Contact const &i);
+
 #endif

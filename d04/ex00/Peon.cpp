@@ -1,6 +1,6 @@
 // Peon
 #include "Peon.hpp"
-#include <iostream>
+// #include <iostream>
 
 Peon::Peon(void) {
     std::cout << "Default Constructor Peon called(void)" << std::endl;
