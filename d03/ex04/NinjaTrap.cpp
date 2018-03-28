@@ -61,6 +61,7 @@ bool NinjaTrap::meleeAttack(std::string const & target) {
 }
 
 void NinjaTrap::ninjaShoeBox(ClapTrap& ct) {
+    (void)ct;
     std::cout << this->type << " " << this->name << " found the usine!!" << std::endl;
 }
 

@@ -2,7 +2,7 @@
 #include "ClapTrap.hpp"
 #include <iostream>
 
-ClapTrap::ClapTrap(void): type("ClapTrap"), name("ClapTrap"), hitPoints(100), maxhitPoints(100), energyPoints(100), maxEnergyPoints(100),
+ClapTrap::ClapTrap(void): name("ClapTrap"), type("ClapTrap"), hitPoints(100), maxhitPoints(100), energyPoints(100), maxEnergyPoints(100),
     level(1), meleeAttackDamage(30), rangedAttackDamage(20), ArmorDamageReduction(5)  {
     std::cout << this->type << " " << this->name << " -- start bootup sequence" << std::endl;
 }
@@ -53,7 +53,7 @@ bool ClapTrap::takeDamage(unsigned int amount) {
     this->ArmorDamageReduction -= amount;
     if (this->ArmorDamageReduction < 0)
         this->ArmorDamageReduction = 0;
-    if (amount < tmp)
+    if ((int)amount < tmp)
         amount = 0;
     else
         amount -= tmp;

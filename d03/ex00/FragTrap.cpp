@@ -86,7 +86,7 @@ bool FragTrap::takeDamage(unsigned int amount) {
     this->ArmorDamageReduction -= amount;
     if (this->ArmorDamageReduction < 0)
         this->ArmorDamageReduction = 0;
-    if (amount < tmp)
+    if ((int)amount < tmp)
         amount = 0;
     else
         amount -= tmp;

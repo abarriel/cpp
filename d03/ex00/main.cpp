@@ -23,9 +23,10 @@ int     main(void) {
     wolverine.infos();
     wolverine.rangedAttack("Dr Strange");
     wolverine.meleeAttack("Dr Strange and Freewer");
-    wolverine.takeDamage(0);
+    wolverine.takeDamage(5);
+    wolverine.infos();
     wolverine.takeDamage(1001000000);
-    wolverine.takeDamage(2);
+    wolverine.takeDamage(-2);
     wolverine.takeDamage(2);
     wolverine.infos();
     a = wolverine;

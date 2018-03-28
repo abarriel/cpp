@@ -38,7 +38,7 @@ int     main(void) {
     drquine->beRepaired(4);
     wolverine->beRepaired(5552);
     wolverine->infos();
-    wolverine->takeDamage(2);
+    wolverine->takeDamage(-2);
     drquine->challengeNewcomer();
     drquine->challengeNewcomer();
     drquine->challengeNewcomer();

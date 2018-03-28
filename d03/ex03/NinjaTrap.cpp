@@ -54,6 +54,7 @@ NinjaTrap::~NinjaTrap(void) {
     std::cout << this->name << " ninja neverrrr died (oh well maybe)" << std::endl;
 }
 void NinjaTrap::ninjaShoeBox(ClapTrap& ct) {
+    (void)ct;
     std::cout << this->type << " " << this->name << " found the usine!!" << std::endl;
 }
 
