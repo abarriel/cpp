@@ -2,13 +2,13 @@
 
 /* Constructors */
 AWeapon::AWeapon(void) {
-	std::cout << "(AWeapon) default constructor called" << std::endl;
+	// std::cout << "(AWeapon) default constructor called" << std::endl;
     return ;
 }
 
 AWeapon::AWeapon(std::string const & name, int apcost, int damage)
 	: name(name), apcost(apcost), damage(damage) {
-	std::cout << "(AWeapon) " << this->name << " is construct (called)" << std::endl;
+	// std::cout << "(AWeapon) " << this->name << " is construct (called)" << std::endl;
 }
 
 /* Constructors def end */
@@ -46,13 +46,13 @@ std::ostream& operator<<(std::ostream& out, AWeapon const &i) {
 /* override end */
 
 AWeapon::AWeapon(AWeapon const & src) {
-	std::cout << "(AWeapon) copy constructor called" << std::endl;
+	// std::cout << "(AWeapon) copy constructor called" << std::endl;
 	*this = src;
     return ;
 }
 
 /* Destructors */
 AWeapon::~AWeapon(void) {
-	std::cout << "(AWeapon) " << this->name << " destructor called" << std::endl;
+	// std::cout << "(AWeapon) " << this->name << " destructor called" << std::endl;
     return ;
 }

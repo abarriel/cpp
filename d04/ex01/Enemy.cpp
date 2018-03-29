@@ -1,18 +1,22 @@
 #include "Enemy.hpp"
 
 Enemy::Enemy(void) {
-	std::cout << "(Enemy) default constructor called" << std::endl;
+	// std::cout << "(Enemy) default constructor called" << std::endl;
     return ;
 }
 
 Enemy::Enemy(int hp, std::string const & type): hp(hp), type(type) {
-	std::cout << "(Enemy) " << type << "constructor called" << std::endl;
+	// std::cout << "(Enemy) " << type << " constructor called" << std::endl;
 }
 
 Enemy::Enemy(Enemy const & src) {
-	std::cout << "(Enemy) copy constructor called" << std::endl;
+	// std::cout << "(Enemy) copy constructor called" << std::endl;
 	*this = src;
     return ;
+}
+
+int Enemy::getHP() const {
+	return this->hp;
 }
 
 void Enemy::takeDamage(int dam) {
@@ -42,6 +46,6 @@ std::ostream& operator<<(std::ostream& out, Enemy const &i) {
 
 /* Destructors */
 Enemy::~Enemy(void) {
-	std::cout << "(Enemy) destructor Enemy called" << std::endl;
+	// std::cout << "(Enemy) destructor Enemy called" << std::endl;
     return ;
 }

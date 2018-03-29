@@ -3,19 +3,19 @@
 /* Constructors */
 PlasmaRifle::PlasmaRifle(void)
 : AWeapon("Plasma Rifle", 5, 21) {
-	std::cout << this->name << " is construct (called)" << std::endl;
+	// std::cout << this->name << " is construct (called)" << std::endl;
     return ;
 }
 
 PlasmaRifle::PlasmaRifle(PlasmaRifle const & src) {
-	std::cout << "(PlasmaRifle) copy constructor called" << std::endl;
+	// std::cout << "(PlasmaRifle) copy constructor called" << std::endl;
 	*this = src;
     return ;
 }
 /* end constructors */
 
 void PlasmaRifle::attack() const {
-	std::cout << this->name << " with " << this->damage << " cost " << this->apcost;
+	// std::cout << this->name << " with " << this->damage << " cost " << this->apcost;
 	std::cout << "* piouuu piouuu piouuu *" << std::endl;
 }
 
@@ -29,12 +29,12 @@ PlasmaRifle& PlasmaRifle::operator=(PlasmaRifle const & rhs) {
 }
 
 std::ostream& operator<<(std::ostream& out, PlasmaRifle const &i) {
-	out << "(PlasmaRifle) Hello my name is " << i.getName() << " !"<< std::endl;
+	out << "Hello my name is " << i.getName() << " !"<< std::endl;
 	return out;
 }
 
 /* Destructors */
 PlasmaRifle::~PlasmaRifle(void) {
-	std::cout << "(PlasmaRifle) destructor PlasmaRifle called" << std::endl;
+	// std::cout << "(PlasmaRifle) destructor PlasmaRifle called" << std::endl;
     return ;
 }
