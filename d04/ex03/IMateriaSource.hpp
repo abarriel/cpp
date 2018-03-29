@@ -1,22 +1,13 @@
 #ifndef IMATERIASOURCE_HPP
 # define IMATERIASOURCE_HPP
 # include <iostream>
+# include "AMateria.hpp"
 
 class IMateriaSource {
-	private:
-	protected:
-	public:
-		/* Constructors - do not delete the default constructor (void) */
-		IMateriaSource(void);
-
-		/* function members (or methods) */
-
-		/* override */
-		IMateriaSource(IMateriaSource const & src);
-		IMateriaSource& operator=(IMateriaSource const & rhs);
-
-		/* Destructors */
-		~IMateriaSource(void);
+public:
+       virtual ~IMateriaSource() {}
+       virtual void learnMateria(AMateria*) = 0;
+       virtual AMateria* createMateria(std::string const & type) = 0;
 };
 
 std::ostream& operator<<(std::ostream& out, IMateriaSource const &i);

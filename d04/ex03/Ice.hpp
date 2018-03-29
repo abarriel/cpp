@@ -1,8 +1,10 @@
 #ifndef ICE_HPP
 # define ICE_HPP
 # include <iostream>
+# include "AMateria.hpp"
+# include "ICharacter.hpp"
 
-class Ice {
+class Ice: public AMateria {
 	private:
 	protected:
 	public:
@@ -10,7 +12,8 @@ class Ice {
 		Ice(void);
 
 		/* function members (or methods) */
-
+		AMateria* clone() const;
+		void use(ICharacter& target);
 		/* override */
 		Ice(Ice const & src);
 		Ice& operator=(Ice const & rhs);
