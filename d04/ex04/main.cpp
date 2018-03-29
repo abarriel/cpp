@@ -10,6 +10,11 @@ int main() {
 	IAsteroid* koala = new KoalaSteroid();
 	IAsteroid* astero = new AsteroKreog();
 	IMiningLaser* strip = new StripMiner();
-	IMiningLaser* DeepCoreMiner = new DeepCoreMiner();
+	IMiningLaser* deep = new DeepCoreMiner();
+	(void)koala;
+	(void)strip;
+	(void)deep;
+	(void)astero;
+	std::cout << koala->getName() << " " << astero->getName() << std::endl;
 	return 0;
 }

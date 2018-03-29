@@ -9,21 +9,29 @@ AsteroKreog::AsteroKreog(void): name("AsteroKreog") {
 /* function members */
 std::string AsteroKreog::getName() const {
 	return this->name;
-};
-
-std::string AsteroKreog::beMined() const {
+}
+std::string AsteroKreog::beMined(StripMiner *o) const{
+	(void)o;
+	
 	return 0;
-};
+}
+std::string AsteroKreog::beMined(DeepCoreMiner *o) const{
+	(void)o;
+	return 0;
+}
+
 
 /* override */
 AsteroKreog& AsteroKreog::operator=(AsteroKreog const & rhs) {
 	std::cout << "(AsteroKreog) assignation operator called";
 	/* add logic */
+	this->name = rhs.name;	
 	return *this;
 }
 
 std::ostream& operator<<(std::ostream& out, AsteroKreog const &i) {
 	out << "(AsteroKreog) WARNING ! ADD A LOGIC <<" << std::endl;
+	(void)i;
 	return out;
 }
 

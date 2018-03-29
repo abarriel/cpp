@@ -7,13 +7,13 @@ StripMiner::StripMiner(void) {
 
 /* function members */
 void StripMiner::mine(IAsteroid* as) {
-	std::cout << "* strip mining ... got " << as->beMined() <<" ! *" << std::endl;
+	std::cout << "* strip mining ... got " << as->beMined(this) <<" ! *" << std::endl;
 }
 /* override */
 StripMiner& StripMiner::operator=(StripMiner const & rhs) {
 	std::cout << "(StripMiner) assignation operator called";
 	/* add logic */
-	*this = rhs;
+	(void)rhs;
 	return *this;
 }
 

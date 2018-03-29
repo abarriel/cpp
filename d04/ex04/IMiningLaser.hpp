@@ -2,7 +2,7 @@
 # define IMININGLASER_HPP
 # include <iostream>
 # include "IAsteroid.hpp"
-
+class IAsteroid;
 class IMiningLaser {
 	public:
 		virtual ~IMiningLaser() {};

@@ -4,16 +4,16 @@ DeepCoreMiner::DeepCoreMiner(void) {
 	std::cout << "(DeepCoreMiner) default constructor called" << std::endl;
     return ;
 }
-
 /* function members */
 void DeepCoreMiner::mine(IAsteroid* as) {
-	std::cout << "* mining depp ... got " << as->beMined() << " ! *" << std::endl;
+	std::cout << "* mining depp ... got " << as->beMined(this) << " ! *" << std::endl;
 }
+
 /* override */
 DeepCoreMiner& DeepCoreMiner::operator=(DeepCoreMiner const & rhs) {
 	std::cout << "(DeepCoreMiner) assignation operator called";
 	/* add logic */
-	*this = rhs;
+	(void)rhs;
 	return *this;
 }
 

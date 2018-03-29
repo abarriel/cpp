@@ -9,16 +9,27 @@ KoalaSteroid::KoalaSteroid(void): name("KoalaSteroid") {
 /* function members */
 std::string KoalaSteroid::getName() const {
 	return this->name;
-};
+}
+
+std::string KoalaSteroid::beMined(StripMiner *o) const{
+	(void)o;
+	return 0;
+}
+std::string KoalaSteroid::beMined(DeepCoreMiner *o) const{
+	(void)o;
+	return 0;
+}
 /* override */
 KoalaSteroid& KoalaSteroid::operator=(KoalaSteroid const & rhs) {
 	std::cout << "(KoalaSteroid) assignation operator called";
 	/* add logic */
+	this->name = rhs.name;
 	return *this;
 }
 
 std::ostream& operator<<(std::ostream& out, KoalaSteroid const &i) {
 	out << "(KoalaSteroid) WARNING ! ADD A LOGIC <<" << std::endl;
+	(void)i;
 	return out;
 }
 

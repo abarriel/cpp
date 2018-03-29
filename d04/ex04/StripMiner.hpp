@@ -3,7 +3,7 @@
 # include <iostream>
 # include "IAsteroid.hpp"
 # include "IMiningLaser.hpp"
-
+class IAsteroid;
 class StripMiner: public IMiningLaser {
 	private:
 	protected:

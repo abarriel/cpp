@@ -2,6 +2,7 @@
 # define KOALASTEROID_HPP
 # include <iostream>
 # include "IAsteroid.hpp"
+class IAsteroid;
 
 class KoalaSteroid: public IAsteroid {
 	private:
@@ -14,7 +15,8 @@ class KoalaSteroid: public IAsteroid {
 
 		/* function members (or methods) */
 		std::string getName() const;
-		std::string beMined() const;		
+		std::string beMined(StripMiner *o) const;
+		std::string beMined(DeepCoreMiner *o) const ;
 		/* override */
 		KoalaSteroid(KoalaSteroid const & src);
 		KoalaSteroid& operator=(KoalaSteroid const & rhs);

@@ -3,7 +3,7 @@
 # include <iostream>
 #include "IAsteroid.hpp"
 #include "IMiningLaser.hpp"
-
+class IAsteroid;
 class DeepCoreMiner: public IMiningLaser {
 	private:
 	protected:
@@ -13,6 +13,7 @@ class DeepCoreMiner: public IMiningLaser {
 
 		/* function members (or methods) */
 		void mine(IAsteroid*);
+
 		/* override */
 		DeepCoreMiner(DeepCoreMiner const & src);
 		DeepCoreMiner& operator=(DeepCoreMiner const & rhs);

@@ -13,7 +13,9 @@ class AsteroKreog: public IAsteroid {
 
 		/* function members (or methods) */
 		std::string getName() const;
-		std::string beMined() const;		
+		std::string beMined(StripMiner *o) const;
+		std::string beMined(DeepCoreMiner *o) const ;
+		// std::string beMined(const *) const;
 		/* override */
 		AsteroKreog(AsteroKreog const & src);
 		AsteroKreog& operator=(AsteroKreog const & rhs);
