@@ -1,5 +1,6 @@
 # include "AMateria.hpp"
 # include "MateriaSource.hpp"
+# include "IMateriaSource.hpp"
 # include "Character.hpp"
 # include "Cure.hpp"
 # include "Ice.hpp"

@@ -25,6 +25,7 @@ Contact::Contact(Contact const & src) {
 	*this = src;
     return ;
 }
+
 /* Destructors */
 Contact::~Contact(void) {
 	std::cout << "(Contact) destructor Contact called" << std::endl;
