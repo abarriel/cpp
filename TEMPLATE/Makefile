@@ -8,7 +8,7 @@ SRCS = \
 Contact.cpp \
 main.cpp \
 
-OBJ = $(SRCS:%.s=./%.o)
+OBJ = $(SRCS:%.cpp=./%.o)
 all: $(NAME)
 
 %.o: %.cpp

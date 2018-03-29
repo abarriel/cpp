@@ -7,7 +7,7 @@ FLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic
 SRCS = \
 replace.cpp \
 
-OBJ = $(SRCS:%.s=./%.o)
+OBJ = $(SRCS:%.cpp=./%.o)
 all: $(NAME)
 
 %.o: %.cpp
