@@ -1,0 +1,27 @@
+#ifndef ENEMY_HPP
+# define ENEMY_HPP
+# include <iostream>
+# include "AEntity.hpp"
+
+class Enemy: public AEntity {
+	private:
+	protected:
+	public:
+		/* Constructors - do not delete the default constructor (void) */
+		Enemy(void);
+
+		/* function members (or methods) */
+		Enemy* clone() const;
+		/* override */
+		Enemy(Enemy const & src);
+		Enemy& operator=(Enemy const & rhs);
+		void attack(Enemy*);
+		void attack(Player*);
+		
+		/* Destructors */
+		~Enemy(void);
+};
+
+std::ostream& operator<<(std::ostream& out, Enemy const &i);
+
+#endif
