@@ -13,11 +13,11 @@ std::string KoalaSteroid::getName() const {
 
 std::string KoalaSteroid::beMined(StripMiner *o) const{
 	(void)o;
-	return 0;
+	return "Krpite";
 }
 std::string KoalaSteroid::beMined(DeepCoreMiner *o) const{
 	(void)o;
-	return 0;
+	return "Zazium";
 }
 /* override */
 KoalaSteroid& KoalaSteroid::operator=(KoalaSteroid const & rhs) {

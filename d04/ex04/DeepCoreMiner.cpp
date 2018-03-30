@@ -6,7 +6,7 @@ DeepCoreMiner::DeepCoreMiner(void) {
 }
 /* function members */
 void DeepCoreMiner::mine(IAsteroid* as) {
-	std::cout << "* mining depp ... got " << as->beMined(this) << " ! *" << std::endl;
+	std::cout << "* mining deep ... got " << as->beMined(this) << " ! *" << std::endl;
 }
 
 /* override */

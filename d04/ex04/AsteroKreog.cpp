@@ -12,12 +12,11 @@ std::string AsteroKreog::getName() const {
 }
 std::string AsteroKreog::beMined(StripMiner *o) const{
 	(void)o;
-	
-	return 0;
+	return "Flavium";
 }
 std::string AsteroKreog::beMined(DeepCoreMiner *o) const{
 	(void)o;
-	return 0;
+	return "Thorite";
 }
 
 
