@@ -42,6 +42,7 @@ class Game {
 		/* function members (or methods) */
 		void addEntity(AEntity* unit);
 		void deleleEntity(AEntity *unit);
+		AEntity *getEntity(AEntity *);
 		// void updateEntity(Bullet *);
 		// void updateEntity(Enemy *);
 		// void updateEntity(Player *, int x, int y, bool isNeg);
@@ -55,6 +56,7 @@ class Game {
 		AEntity* getPlayer();		
 		int getX(void) const;
 		int getY(void) const;
+		int getTicks(void) const;
 		int getDir(void) const;
 		bool getEnd() const;
 		int getMaxEntity(void) const;

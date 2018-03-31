@@ -23,6 +23,38 @@ void Game::init(){
 	delete p;
 }
 
+AEntity *Game::getEntity(AEntity *me) {
+	Node *b;
+	AEntity *cur;
+	int x, y;
+
+	b = this->e;
+	while (this->e) {
+		cur = this->e->entity;
+		if (cur == me)
+		{
+			this->e = this->e->next;
+			continue;
+		}
+		for (y = me->getY(); y < (me->getY() + me->getYmax()); y++) {
+			if (y >= cur->getY() && y <= (cur->getY() + cur->getYmax()))
+				{
+					for (x = me->getX(); x < (me->getX() + me->getXmax()); x++) {
+						if (x >= cur->getX() && x <= (cur->getX() + cur->getXmax()))
+						{
+							// std::cout << "HIT AT y: " << y << " x: " << x << std::endl;
+							this->e = b;
+							return cur;
+						}
+					}
+				}
+		} 
+		this->e = this->e->next;
+	}
+	// std::cout << std::endl;
+	this->e = b;
+	return NULL;
+}
 void Game::printShape(AEntity *e) const {
 	int i = -1;
     attron(COLOR_PAIR(e->getStyle()));
@@ -36,16 +68,18 @@ void Game::printShape(AEntity *e) const {
 
 void Game::rmenu() {
 	box(stdscr, '*', '-');
-	mvprintw(0, this->y / 2 - 10, "*FT_RETRO*");
+	mvprintw(0, this->x / 5 , "  HP: %d  ", this->getPlayer()->getHP());
+	mvprintw(0, this->x / 4 , "  SCORE: %d  ", this->getPlayer()->getScore());
+	mvprintw(0, this->x / 3 , "  LVL: %d  ", this->getPlayer()->getlvl());
+	mvprintw(0, this->x / 2 , "  FT_RETRO  ");
 }
 
 void Game::render() {
 	Node *begin = this->e;
 	int i;
 	i = 0;
-	this->rmenu(); /* clear print menu and box */
 	AEntity *e;
-	clear();
+	erase();
 	while (this->e){
 		
 		e = this->e->entity;
@@ -54,29 +88,29 @@ void Game::render() {
 		this->e = this->e->next;
 	}
 	this->e = begin;
+	this->rmenu(); /* clear print menu and box */
 }
-#include <unistd.h>
-#include <stdio.h>
-#define POP_ENNEMY 4  
+#define POP_ENNEMY 6
+#define SPEED_Y 2
+#define SPEED_X 4
+
 void Game::update(int direction) {
 	Node *b = this->e;
 	Node *ent = this->e->next;
 	int i;
 	int enemy_creation = POP_ENNEMY;
 	switch (direction) {
-		default:
-			break;
 		case KEY_LEFT:
-			this->getPlayer()->update(2, 0, true);
+			this->getPlayer()->update(SPEED_X, 0, true);
 			break;
 		case KEY_RIGHT:
-			this->getPlayer()->update(2, 0, false);
+			this->getPlayer()->update(SPEED_X, 0, false);
 			break;
 		case KEY_DOWN:
-			this->getPlayer()->update(0, 1, false);
+			this->getPlayer()->update(0, SPEED_Y, false);
 			break;
 		case KEY_UP:
-			this->getPlayer()->update(0,1, true);
+			this->getPlayer()->update(0, SPEED_Y, true);
 			break;
 		case ' ':
 		{
@@ -89,14 +123,27 @@ void Game::update(int direction) {
 		}
 		case 'e':
 		{
+			AEntity *b = new Enemy();
+			b->setX() = 50;
+			b->setY() = 50;
+			this->addEntity(b);			
+			delete b;
 			break;
 		}
+		default:
+			break;
 	} 
-	if (!(ticks % 500))
+	if (!(this->ticks % 400))
 	{
 		while(enemy_creation--) {
 			AEntity *b = new Enemy();
+			// if ((b->getDamageCost() > 30) && !(this->ticks % 2))
+			// 	{
+			// 		delete b;
+			// 		continue;
+			// 	}
 			i = (rand() / 54 + this->ticks) % this->x;
+			i = (i == 0) ? 1 : i;
 			if ((i + b->getXmax()) >= this->x)
 				b->setX() = i - b->getXmax();
 			else 
@@ -109,18 +156,15 @@ void Game::update(int direction) {
 			this->addEntity(b);
 			delete b;
 		}
-		this->ticks = 0;
 		enemy_creation = POP_ENNEMY;
 	}
 	while (ent) {
-		// {
-			//  AEntity *e = new Enemy();
-			//  b->setX() 
-		// 	//  delete e;
-		// }
 		ent->entity->update();
+			// this->deleleEntity(ent->entity);
 		ent = ent->next;
 	}
+	if(this->ticks > 800)
+		this->ticks = 0;
 	this->e = b;
 }
 
@@ -130,6 +174,7 @@ AEntity* Game::getPlayer() { return this->e->entity; }
 int Game::getDir() const { return this->direction; }
 int Game::getX(void) const { return this->x; }
 int Game::getY(void) const { return this->y; }
+int Game::getTicks(void) const { return this->ticks; }
 int Game::getMaxEntity() const{ return this->maxEntity; }
 bool Game::getEnd() const { return this->end; }
 int& Game::setDir() { return this->direction; }
@@ -161,7 +206,7 @@ void Game::deleleEntity(AEntity *unit) {
 		{
 			tmp = (*list);
 			(*list) = (*list)->next;
-			delete tmp->entity; // segv
+			delete tmp->entity;
 			delete tmp;
 		}
 		else

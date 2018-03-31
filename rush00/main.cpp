@@ -9,6 +9,11 @@ void initNcurse() {
     init_pair(2, COLOR_GREEN, COLOR_BLACK);
     init_pair(3, COLOR_BLUE, COLOR_BLACK);
     init_pair(4, COLOR_MAGENTA, COLOR_BLACK);
+    init_pair(5, COLOR_YELLOW, COLOR_BLACK);
+	// init_color(10, 234, 32, 39);	
+	// rgb(255, 195, 18)
+	init_color(10,0,255,95);
+	init_pair(10, 10, COLOR_BLACK);	
 	noecho (); /* no print char */
 	curs_set(0); /* hide cursor */
 	keypad(stdscr, TRUE);
@@ -16,6 +21,8 @@ void initNcurse() {
 	/* Initialization of the config */
 
 	getmaxyx(stdscr, Game::instance()->setY(), Game::instance()->setX()); /* get max x and y of default window */
+	// Game::instance()->setY() -= 1;
+	// Game::instance()->setX() += 1;
 }
 // fps 60 update par seconde ticks
 // a chaque update check si le x et y est deja hit

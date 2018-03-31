@@ -15,11 +15,11 @@ bool Player::update(int x, int y, bool isNeg) {
 	y = (isNeg) ? -y : y;
 	int xMax = Game::instance()->getX();
 	int yMax = Game::instance()->getY();
-	if ((this->y + this->yMax + y) > yMax || (this->y + y) < 0)
+	if ((this->y + this->yMax + y) > yMax || (this->y + y) < 1)
 		return false;
 	else 
 		this->y += y;
-	if ((this->x + this->xMax + x) > xMax || (this->x + x) < 0)
+	if ((this->x + this->xMax + x) > xMax || (this->x + x) < 1)
 		return false;
 	else
 		this->x += x;	

@@ -14,7 +14,7 @@ class Bullet: public AEntity {
 	
 		/* function members (or methods) */
 		bool update();	
-		bool update(int x, int y, bool isNeg);		
+		// bool update(int x, int y, bool isNeg);		
 		Bullet* clone() const;
 		/* override */
 		Bullet(Bullet const & src);

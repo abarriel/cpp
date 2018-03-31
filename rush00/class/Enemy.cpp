@@ -28,8 +28,56 @@ bool Enemy::update(int x, int y, bool isNeg) {
 	return true;
 }
 
+#define MOV_X 2
+#define MOV_Y MOV_X
+
 bool Enemy::update() {
-	// std::cout << "AENTITY UPDATE" << std::endl;
+	AEntity *e;
+	int ti;
+	int mov_x = MOV_X;
+	int xMax = Game::instance()->getX();
+	int yMax = Game::instance()->getY();
+	int mov_y = MOV_Y;
+	ti = (rand() % 100) + 100;
+	if (this->getDamageCost() < 30 && !(Game::instance()->getTicks() % 20)) {
+		if ((this->y + this->yMax + mov_y) >= yMax)
+		{
+			Game::instance()->deleleEntity(this);						
+			return false;
+		}
+		else
+			this->y += mov_y;
+		// if (mthis->x += mov_x;
+	}
+	if(!(Game::instance()->getTicks() % ti)) {
+		if ((this->x + this->xMax + mov_x) > xMax || (this->x + mov_x) < 0)
+			return false;
+		else
+			this->x += mov_x;	
+	}
+	if (this->getDamageCost() > 30 && !(Game::instance()->getTicks() % ti))
+	{
+		AEntity *b = new Bullet(0, true);
+		b->setX() = this->x + (this->xMax / 2);
+		b->setY() = this->y + (this->yMax) + 10;
+		Game::instance()->addEntity(b);
+		delete b;
+	}
+	if (this->hp <= 0)
+	{
+		Game::instance()->deleleEntity(this);
+		return false;
+	}
+	if ((e = Game::instance()->getEntity(this)))
+	{
+		e->setHP() -= this->getDamageCost();
+		this->setHP() -= e->getDamageCost();
+		if (e->getHP() <= 0)
+			 Game::instance()->deleleEntity(e);
+		if (this->getHP() <= 0)
+			 Game::instance()->deleleEntity(this);
+		return false;
+	}
 	return true;
 }
 /* override */

@@ -21,6 +21,8 @@ void AEntity::init(int i) {
 	this->isNeg = true;
 	this->xMax = entity[i].xMax;
 	this->yMax = entity[i].yMax;
+	this->lvl = 1;
+	this->score = 0;
 	this->damageCost = entity[i].damageCost;
 }
 
@@ -65,7 +67,7 @@ void AEntity::getInfos() const {
 /* function members */
 void AEntity::takeDamage(int dama) {
 	// this->hp -=
-	(void)dama;
+	this->hp -= dama;
 }
 
 // void attack(Enemy*);
@@ -90,14 +92,17 @@ int AEntity::getStyle() const { return this->style; }
 int AEntity::getDamageCost() const { return this->damageCost; }
 std::string *AEntity::getShape() const { return this->shape; }
 bool AEntity::getLive() const { return this->live; }
+int AEntity::getScore() const { return this->score; }
+int AEntity::getlvl() const { return this->lvl; }
 
+int& AEntity::setScore() { return this->score; }
+int& AEntity::setlvl()  { return this->lvl; }
 int& AEntity::setX() { return this->x; }
 int& AEntity::setY() { return this->y; }
 int& AEntity::setHP() { return this->hp; }
 int& AEntity::setStyle() { return this->style; }
 int& AEntity::setDamageCost() { return this->damageCost; }
 bool& AEntity::setLive() { return this->live; }
-
 /* override */
 AEntity& AEntity::operator=(AEntity const & rhs) {
 	std::cout << "(AEntity) assignation operator called";
@@ -127,5 +132,6 @@ AEntity::AEntity(AEntity const & src) {
 
 /* Destructors */
 AEntity::~AEntity(void) {
+	// std::cout << "(AEntity) destructor constructor called" << std::endl;
     return ;
 }
