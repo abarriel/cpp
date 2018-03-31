@@ -6,7 +6,6 @@
 class TacticalMarine: public ISpaceMarine {
 	private:
 	protected:
-		std::string type;
 	public:
 		/* Constructors - do not delete the default constructor (void) */
 		TacticalMarine(void);

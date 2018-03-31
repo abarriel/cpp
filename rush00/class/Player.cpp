@@ -25,6 +25,16 @@ Player& Player::operator=(Player const & rhs) {
 
 Player* Player::clone() const {
 	Player *clone = new Player();
+	/* should use = operate */
+	clone->x = this->x;
+	clone->x = this->x;
+	clone->y = this->y;
+	clone->size = this->size;
+	clone->hp = this->hp;
+	clone->damageCost = this->damageCost;
+	clone->live = this->live;
+	clone->shape = this->shape;
+	clone->style = this->style;
 	return clone;
 }
 

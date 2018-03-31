@@ -41,19 +41,13 @@ class AEntity {
 		int& setStyle();
 		int& setDamageCost();
 		bool& setLive();
-		void setShape(Enemy *);
-		void setShape(Player *);
-		void setShape(Bullet *);
 		void getInfos() const;
 		/* function members (or methods) */
 		void takeDamage(int dama);
 		// void attack(Enemy*);
 		// void attack(Player*);
 		// void attack(Bullet*);
-		void attack(AEntity*);
-		// void attack(AEntity*);
 
-		void render();
 		void update(Enemy *);
 		void update(Player *);
 		void update(Bullet *);

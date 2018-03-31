@@ -30,25 +30,32 @@ class Game {
 	public:
 		/* Constructors - do not delete the default constructor (void) */
 		Game(void);
-		Game(int x, int y);
 		static Game *instance();
+		/* render */
+		void rmenu(); /* menu */
+		void render();
+
+		void update(int direction);
 		/* function members (or methods) */
-		int getX(void) const;
-		int getMaxEntity(void) const;
 		void addEntity(AEntity* unit);
 		void deleleEntity(AEntity *unit);
-		Node* getEntity();
 		void init();
 		std::string getFile(std::string s);		
+		void startMessage();
+
+		/* accessors */
+		Node* getEntity();
+		AEntity* getPlayer();		
+		int getX(void) const;
 		int getY(void) const;
 		int getDir(void) const;
 		bool getEnd() const;
+		int getMaxEntity(void) const;
 		int& setMaxEntity(void);
 		int& setDir(void);
 		int& setX();
 		int& setY();
 		bool& setEnd();
-		void startMessage();
 		/* override */
 		Game(Game const & src);
 		Game& operator=(Game const & rhs);

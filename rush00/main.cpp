@@ -1,18 +1,5 @@
 #include "Game.hpp"
-#define LEN(name) sizeof(name) / sizeof(AEntity)
-
-void startMessage()
-{
-    std::ifstream ifs("use/welcome");
-	std::stringstream buffer;
-    if (!ifs.is_open())
-	{
-		endwin();
-		exit(0);		
-	}
-	buffer << ifs.rdbuf();
-	printw(buffer.str().c_str());
-}
+#define FPS(tms)  (clock() - tms > 3000)
 
 void initNcurse() {
     initscr();
@@ -31,77 +18,53 @@ void initNcurse() {
 // fps 60 update par seconde ticks
 void fexit() {
     endwin();
+	clear();
+	delete Game::instance();
 	exit(0);
 }
+void render() {
 
+}
 // a chaque update check si le x et y est deja hit
-
-void get(Node *b, int d) {
-	int i;
-
-	i = 0;
-	while(b)
-	{
-		if(i == 2)
-		{
-			b->entity->getInfos();
-			b->entity->setHP() = 0;
-			if(d == 1)
-				 Game::instance()->deleleEntity(b->entity);
-		}
-		b = b->next;
-		i++;
-	}
+void boxx() {
+	clear();
+	box(stdscr, '|', '-');
+	wrefresh(stdscr);
 }
 int main()
 {
-	int i;
-	i =0;
+	std::ofstream out("out.log");
+	std::ifstream out_buf("out.log");
+	std::streambuf *coutbuf = std::cout.rdbuf(); /* save buff */
+	std::cout.rdbuf(out.rdbuf()); /* redirect std::cout to out.log */
+	int direct;
 	Game *g = Game::instance();
-	// AEntity *p = new Player();
-	// AEntity *e = new Enemy();
-	// g->addEntity(e);
-	g->init();
-	Node *entities = g->getEntity();
-	// Game *g = new Game();
-	(void)g;
-	get(entities, 0);
-	// get(entity);
-	// be = entity;
-	get(entities, 1);
-	std::cout << "EIFJEOIFEJOIFEJR" << std::endl;
-	while(entities)
+	clock_t	clock1 = clock();
+	// Node *entities = g->getEntity();
+	// 40000
+	initNcurse();
+	g->init(); /* after initNcurse to get X and Y max*/
+	g->startMessage();
+	g->rmenu();
+	while ((direct = getch()) != 10)
+		if (direct == 'q')
+			goto end;
+	while(1)
+	while (FPS(clock1))
 	{
-	// 	// if(i == 2)
-		entities->entity->getInfos();
-		entities = entities->next;
-	// 	i++;
+		direct = getch();
+		if (direct == 'q')
+			goto end;
+		g->update(direct);
+		g->render();
+		clock1 = clock();
+		refresh();		
 	}
-	// g->setMaxEntity() = LEN(e);
-	// for(int i = 0; i < g->getMaxEntity(); i++ )
-// s	p->getInfos();
-	// e->getInfos();
-	// b.getInfos();
-	// std::cout << b->getShape() << std::endl;
-// std::ofstream out("out.log");
-// std::ifstream out_buf("out.log");
-// std::streambuf *coutbuf = std::cout.rdbuf(); /* save buff */
-// std::cout.rdbuf(out.rdbuf()); /* redirect std::cout to out.log */
-// initNcurse();
-// g->startMessage();
-// box(stdscr, '|', '-');
-// mvprintw(0, g->getY() / 2 - 10, "*FT_RETRO*");
-// while ((direction = getch()) != 10)
-// {
-// 	if (direction == 'q')
-// 		fexit();
-// }
-// clear();
-// box(stdscr, '|', '-');
-// wrefresh(stdscr);
-// getchar();
-// endwin();
-// std::cout.rdbuf(coutbuf); /* reset buff */
-// std::cout << out_buf.rdbuf() << std::endl;
+end:
+	clear();
+	endwin();
+	delete g;
+	std::cout.rdbuf(coutbuf); /* reset buff */
+	std::cout << "***OUT.LOG****" << std::endl << out_buf.rdbuf() << std::endl << "***OUT.LOG****" << std::endl;
     return 0;
 }

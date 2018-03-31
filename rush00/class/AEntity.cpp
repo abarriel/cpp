@@ -8,7 +8,6 @@ int rands() {
 }
 
 AEntity::AEntity(void) {
-	// std::cout << "(AEntity) default constructor called" << std::endl;
     return ;
 }
 
@@ -34,7 +33,6 @@ AEntity::AEntity(Enemy *e) {
 	int i = rands() % ENEMY_LEN;
 	(void)e;
 	this->init(i);
-	// std::cout << "(AEntity) okpokpokop constructor called" << std::endl;
     return ;
 }
 
@@ -42,15 +40,8 @@ AEntity::AEntity(Bullet *e, int u) {
 	int i = 5 + u;
 	(void)e;
 	this->init(i);
-	// std::cout << "(AEntity) okpokpokop constructor called" << std::endl;
     return ;
 }
-// AEntity::AEntity(Player *p) : x(0), y(0), size(0), live(false) {
-// 	// int i = rands() % 9;
-// 	this->init(i);
-// 	std::cout << "(AEntity) okpokpokop constructor called" << std::endl;
-//     return ;
-// }
 
 void AEntity::getInfos() const {
 	std::cout << "---------------------" << std::endl;
@@ -70,9 +61,6 @@ void AEntity::takeDamage(int dama) {
 	(void)dama;
 }
 
-void AEntity::attack(AEntity* e) {
-	e->takeDamage(this->damageCost);
-}
 // void attack(Enemy*);
 // void attack(Player*);
 void AEntity::update(Enemy *e) {
@@ -86,10 +74,6 @@ void AEntity::update(Player *p) {
 void AEntity::update(Bullet *b) {
 	(void)b;
 	// 
-}
-
-void AEntity::render(){
-// 
 }
 
 int AEntity::getX() const { return this->x; }
@@ -109,21 +93,6 @@ int& AEntity::setStyle() { return this->style; }
 int& AEntity::setDamageCost() { return this->damageCost; }
 bool& AEntity::setLive() { return this->live; }
 
-void AEntity::setShape(Enemy *e) {
-	(void)e;
-	std::cout << "setShape Enemy";
-}
-
-void AEntity::setShape(Player *p) {
-	(void)p;
-	std::cout << "setShape player";
-}
-
-void AEntity::setShape(Bullet *b) {
-	(void)b;
-	std::cout << "setShape Bullet";
-}
-
 /* override */
 AEntity& AEntity::operator=(AEntity const & rhs) {
 	std::cout << "(AEntity) assignation operator called";
@@ -134,7 +103,6 @@ AEntity& AEntity::operator=(AEntity const & rhs) {
 	this->damageCost = rhs.damageCost;
 	this->live = rhs.live;
 	this->shape = rhs.shape;
-	/* add logic */
 	return *this;
 }
 
@@ -152,6 +120,5 @@ AEntity::AEntity(AEntity const & src) {
 
 /* Destructors */
 AEntity::~AEntity(void) {
-	// std::cout << "(AEntity) destructor AEntity called" << std::endl;
     return ;
 }
