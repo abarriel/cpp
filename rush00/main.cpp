@@ -1,5 +1,5 @@
 #include "Game.hpp"
-#define FPS(tms)  (clock() - tms > 3000)
+#define FPS(tms)  (clock() - tms > 10000)
 
 void initNcurse() {
     initscr();
@@ -11,26 +11,23 @@ void initNcurse() {
     init_pair(4, COLOR_MAGENTA, COLOR_BLACK);
 	noecho (); /* no print char */
 	curs_set(0); /* hide cursor */
+	keypad(stdscr, TRUE);
 	nodelay(stdscr,TRUE); /*  time framed */
 	/* Initialization of the config */
-	getmaxyx(stdscr, Game::instance()->setX(), Game::instance()->setY()); /* get max x and y of default window */
+
+	getmaxyx(stdscr, Game::instance()->setY(), Game::instance()->setX()); /* get max x and y of default window */
 }
 // fps 60 update par seconde ticks
-void fexit() {
-    endwin();
-	clear();
-	delete Game::instance();
-	exit(0);
-}
-void render() {
-
-}
 // a chaque update check si le x et y est deja hit
-void boxx() {
-	clear();
-	box(stdscr, '|', '-');
-	wrefresh(stdscr);
-}
+
+/* 
+EACH FRAME 
+	- save input
+	- update entity
+	- render
+	- refresh
+*/
+
 int main()
 {
 	std::ofstream out("out.log");
@@ -38,8 +35,11 @@ int main()
 	std::streambuf *coutbuf = std::cout.rdbuf(); /* save buff */
 	std::cout.rdbuf(out.rdbuf()); /* redirect std::cout to out.log */
 	int direct;
+	srand (time(NULL));	
 	Game *g = Game::instance();
 	clock_t	clock1 = clock();
+	(void)clock1;
+	(void)direct;
 	// Node *entities = g->getEntity();
 	// 40000
 	initNcurse();
@@ -57,14 +57,16 @@ int main()
 			goto end;
 		g->update(direct);
 		g->render();
+		refresh();
 		clock1 = clock();
-		refresh();		
+		g->setTicks()++;
 	}
 end:
 	clear();
 	endwin();
 	delete g;
 	std::cout.rdbuf(coutbuf); /* reset buff */
-	std::cout << "***OUT.LOG****" << std::endl << out_buf.rdbuf() << std::endl << "***OUT.LOG****" << std::endl;
+	// (void)out_buf;
+	// std::cout << "***OUT.LOG****" << std::endl << out_buf.rdbuf() << std::endl << "***OUT.LOG****" << std::endl;
     return 0;
 }

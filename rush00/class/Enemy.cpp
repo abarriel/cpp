@@ -11,14 +11,35 @@ Enemy::Enemy(void): AEntity::AEntity(this) {
     return ;
 }
 /* function members */
+bool Enemy::update(int x, int y, bool isNeg) {
+	x = (isNeg) ? -x : x;
+	y = (isNeg) ? -y : y;
+	int xMax = Game::instance()->getX();
+	int yMax = Game::instance()->getY();
+	// std::cout << "ENEMY UPDATE" << std::endl;			
+	if ((this->y + this->yMax + y) > yMax || (this->y + y) < 0)
+		return false;
+	else 
+		this->y += y;
+	if ((this->x + this->xMax + x) > xMax || (this->x + x) < 0)
+		return false;
+	else
+		this->x += x;	
+	return true;
+}
 
+bool Enemy::update() {
+	// std::cout << "AENTITY UPDATE" << std::endl;
+	return true;
+}
 /* override */
 Enemy& Enemy::operator=(Enemy const & rhs) {
 	std::cout << "(Enemy) assignation operator called";
 	/* add logic */
 	this->x = rhs.x;
 	this->y = rhs.y;
-	this->size = rhs.size;
+	this->xMax = rhs.xMax;
+	this->yMax = rhs.yMax;
 	this->hp = rhs.hp;
 	this->damageCost = rhs.damageCost;
 	this->live = rhs.live;
@@ -29,6 +50,15 @@ Enemy& Enemy::operator=(Enemy const & rhs) {
 
 Enemy* Enemy::clone() const {
 	Enemy *clone = new Enemy();
+	clone->x = this->x;
+	clone->y = this->y;
+	clone->xMax = this->xMax;
+	clone->yMax = this->yMax;
+	clone->hp = this->hp;
+	clone->damageCost = this->damageCost;
+	clone->live = this->live;
+	clone->shape = this->shape;
+	clone->style = this->style;
 	return clone;
 }
 
@@ -46,6 +76,6 @@ Enemy::Enemy(Enemy const & src) {
 
 /* Destructors */
 Enemy::~Enemy(void) {
-	std::cout << "(Enemy) destructor Enemy called" << std::endl;
+	// std::cout << "(Enemy) destructor Enemy called" << std::endl;
     return ;
 }

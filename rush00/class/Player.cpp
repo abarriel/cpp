@@ -1,12 +1,30 @@
 #include "Player.hpp"
-
 /* Constructors */
 Player::Player(void): AEntity::AEntity(this) {
 	// std::cout << "(Player) default constructor called" << std::endl;
     return ;
 }
 
+bool Player::update() {
+	std::cout << "AENTITY UPDATE" << std::endl;
+	return true;
+}
 /* function members */
+bool Player::update(int x, int y, bool isNeg) {
+	x = (isNeg) ? -x : x;
+	y = (isNeg) ? -y : y;
+	int xMax = Game::instance()->getX();
+	int yMax = Game::instance()->getY();
+	if ((this->y + this->yMax + y) > yMax || (this->y + y) < 0)
+		return false;
+	else 
+		this->y += y;
+	if ((this->x + this->xMax + x) > xMax || (this->x + x) < 0)
+		return false;
+	else
+		this->x += x;	
+	return true;
+}
 
 /* override */
 Player& Player::operator=(Player const & rhs) {
@@ -14,7 +32,8 @@ Player& Player::operator=(Player const & rhs) {
 	/* add logic */
 	this->x = rhs.x;
 	this->y = rhs.y;
-	this->size = rhs.size;
+	this->xMax = rhs.xMax;
+	this->yMax = rhs.yMax;
 	this->hp = rhs.hp;
 	this->damageCost = rhs.damageCost;
 	this->live = rhs.live;
@@ -29,7 +48,8 @@ Player* Player::clone() const {
 	clone->x = this->x;
 	clone->x = this->x;
 	clone->y = this->y;
-	clone->size = this->size;
+	clone->xMax = this->xMax;
+	clone->yMax = this->yMax;
 	clone->hp = this->hp;
 	clone->damageCost = this->damageCost;
 	clone->live = this->live;

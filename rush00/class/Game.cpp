@@ -14,46 +14,115 @@ Game *Game::instance() { /* singleton */
 
 void Game::init(){
 	AEntity *p = new Player();
-	p->setX() = this->x - 1;
-	p->setY() = this->y / 2;
-	p->getInfos();
+	std::cout <<  "lenght: "<< std::endl;
+	p->setX() = this->x / 2;
+	p->setY() = this->y - 1 - p->getYmax();
+	// p->getInfos();
+	this->ticks = 0;
 	this->addEntity(p);
 	delete p;
 }
 
+void Game::printShape(AEntity *e) const {
+	int i = -1;
+    attron(COLOR_PAIR(e->getStyle()));
+	// std::cout << "max x :" << this->x << " max y:" << this->y << std::endl;
+	// std::cout << "y:" << e->getY() << " x:" << e->getX() << std::endl;
+	while (!e->getShape()[++i].empty()) {
+		mvprintw(e->getY() + i, e->getX() ,e->getShape()[i].c_str());
+	}
+	standend();	
+}
+
 void Game::rmenu() {
-	box(stdscr, '|', '-');
+	box(stdscr, '*', '-');
 	mvprintw(0, this->y / 2 - 10, "*FT_RETRO*");
 }
 
 void Game::render() {
 	Node *begin = this->e;
-	clear();
 	int i;
 	i = 0;
-	// this->rmenu(); /* clear print menu and box */
+	this->rmenu(); /* clear print menu and box */
 	AEntity *e;
-	// this->startMessage();
+	clear();
 	while (this->e){
-		attron(COLOR_PAIR(2));
+		
 		e = this->e->entity;
-		e->getInfos();
-		mvprintw(e->getX() - e->getSize(), e->getY(), e->getShape().c_str());
-		// printf("[%s]\n", e->getShape().c_str());
-		// mvprintw(20, 20, e->getShape().c_str());
+		// e->getInfos();
+		this->printShape(e);
 		this->e = this->e->next;
 	}
 	this->e = begin;
 }
-
+#include <unistd.h>
+#include <stdio.h>
+#define POP_ENNEMY 4  
 void Game::update(int direction) {
-	(void)direction;
+	Node *b = this->e;
+	Node *ent = this->e->next;
+	int i;
+	int enemy_creation = POP_ENNEMY;
+	switch (direction) {
+		default:
+			break;
+		case KEY_LEFT:
+			this->getPlayer()->update(2, 0, true);
+			break;
+		case KEY_RIGHT:
+			this->getPlayer()->update(2, 0, false);
+			break;
+		case KEY_DOWN:
+			this->getPlayer()->update(0, 1, false);
+			break;
+		case KEY_UP:
+			this->getPlayer()->update(0,1, true);
+			break;
+		case ' ':
+		{
+			AEntity *b = new Bullet(0, false);
+			b->setX() = this->getPlayer()->getX() + (this->getPlayer()->getXmax() / 2);
+			b->setY() = this->getPlayer()->getY() - 1;
+			this->addEntity(b);
+			delete b;
+			break;
+		}
+		case 'e':
+		{
+			break;
+		}
+	} 
+	if (!(ticks % 500))
+	{
+		while(enemy_creation--) {
+			AEntity *b = new Enemy();
+			i = (rand() / 54 + this->ticks) % this->x;
+			if ((i + b->getXmax()) >= this->x)
+				b->setX() = i - b->getXmax();
+			else 
+				b->setX() = i;
+			i = (rand() / 54 + this->ticks) % (this->y / 3);
+			if ((i + b->getYmax()) >= (this->y / 3))
+				b->setY() = i - b->getYmax();
+			else
+				b->setY() = i;
+			this->addEntity(b);
+			delete b;
+		}
+		this->ticks = 0;
+		enemy_creation = POP_ENNEMY;
+	}
+	while (ent) {
+		// {
+			//  AEntity *e = new Enemy();
+			//  b->setX() 
+		// 	//  delete e;
+		// }
+		ent->entity->update();
+		ent = ent->next;
+	}
+	this->e = b;
 }
-	// 	clear();
-	// bg->putBackground();
-	// g->putObjects();
-	// g->putImage();
-	// refresh();
 
 /* accesors */
 Node* Game::getEntity() { return this->e; }
@@ -67,17 +136,20 @@ int& Game::setDir() { return this->direction; }
 int& Game::setX() { return this->x; }
 int& Game::setMaxEntity() { return this->maxEntity; }
 int& Game::setY() { return this->y; }
+int& Game::setTicks() { return this->ticks; }
 bool& Game::setEnd() { return this->end; }
 
 /* tools */
 
 void Game::startMessage() {
-	std::string file;
-	
+	std::string *file;
+	int i = -1;
 	file = Game::getFile("welcome");
-    attron(COLOR_PAIR(1) | A_BLINK);	
-	mvprintw((this->x / 2) - 10, 0,"%s",file.c_str());
-	attroff(COLOR_PAIR(1) | A_BLINK);
+    attron(COLOR_PAIR(1) | A_BLINK);
+	while (!file[++i].empty()) {
+		mvprintw((this->y / 2) + i, (this->x / 2) - (file[i].length() / 2) ,file[i].c_str());
+	}
+	standend();
 }
 
 void Game::deleleEntity(AEntity *unit) {
@@ -114,10 +186,11 @@ void Game::addEntity(AEntity* unit) {
 	return ;
 }
 
-std::string Game::getFile(std::string s) {
+std::string *Game::getFile(std::string s) {
 	std::ifstream ifs((std::string)"use/" + s);
     std::string file = "";
 	std::string tmp;
+	int i = 0;
 
     if (!ifs.is_open())
 	{
@@ -126,9 +199,16 @@ std::string Game::getFile(std::string s) {
 		exit(1);
 	}
 	while (std::getline(ifs,tmp))
-	    file += tmp + "\n";
+	{
+		i++;
+	 	file += tmp + "\n";
+	}
+	std::stringstream ss(file);
+	std::string *array = new std::string[i + 1];
+	i = -1;
+	while(std::getline(ss, array[++i])) ;
 	ifs.close();
-	return file;
+	return array;
 }
 
 /* override */

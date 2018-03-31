@@ -12,6 +12,10 @@ class Enemy: public AEntity {
 
 		/* function members (or methods) */
 		Enemy* clone() const;
+		// void update(int x, int y, bool isNeg);		
+		bool update();	
+		bool update(int x, int y, bool isNeg);		
+			
 		/* override */
 		Enemy(Enemy const & src);
 		Enemy& operator=(Enemy const & rhs);

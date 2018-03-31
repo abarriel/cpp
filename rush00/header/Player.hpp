@@ -2,7 +2,6 @@
 # define PLAYER_HPP
 # include <iostream>
 # include "AEntity.hpp"
-
 class Player: public AEntity {
 	private:
 	protected:
@@ -14,6 +13,10 @@ class Player: public AEntity {
 		Player* clone() const;		
 		void attack(Enemy*);
 		void attack(Player*);
+		bool update();			
+		bool update(int x, int y, bool isNeg);		
+		
+		// void update(void);
 		/* override */
 		Player(Player const & src);
 		Player& operator=(Player const & rhs);

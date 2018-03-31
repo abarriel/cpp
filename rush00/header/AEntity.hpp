@@ -1,8 +1,7 @@
 #ifndef AENTITY_HPP
 # define AENTITY_HPP
 # include <iostream>
-// # include "Game.hpp"
-
+class Game;
 class Enemy;
 class Player;
 class Bullet;
@@ -13,11 +12,13 @@ class AEntity {
 		int	y; /* current position (take in account the size) */
 		int	hp; /* HP point */
 		// std::string type*/
-		int	size; /* Box size */
+		int	yMax; /* Box size */
+		int	xMax; /* Box size */
 		int style; /* ncurse style */
 		int	damageCost; /* damage Given */
 		bool live; /* is alive */
-		std::string shape; /* string */
+		bool isNeg;
+		std::string *shape; /* string */
 	public:
 		/* Constructors - do not delete the default constructor (void) */
 		AEntity(void);
@@ -26,18 +27,19 @@ class AEntity {
 		AEntity(Bullet *, int);
 		void init(int i);		
 		int getX() const; 
+		int getXmax() const; 
+		int getYmax() const;
 		int getY() const;
 		int getHP() const;
-		int getSize() const;
 		int getStyle() const;
 		int getDamageCost() const;
-		std::string getShape() const;
+		std::string *getShape() const;
 		bool getLive() const;
+
 		virtual AEntity* clone() const = 0;	
 		int& setX();
 		int& setY();
 		int& setHP();
-		int& setSize();
 		int& setStyle();
 		int& setDamageCost();
 		bool& setLive();
@@ -48,9 +50,8 @@ class AEntity {
 		// void attack(Player*);
 		// void attack(Bullet*);
 
-		void update(Enemy *);
-		void update(Player *);
-		void update(Bullet *);
+		virtual bool update(int x, int y, bool isNeg);
+		virtual bool update();
 		/* override */
 		AEntity(AEntity const & src);
 		AEntity& operator=(AEntity const & rhs);
@@ -59,31 +60,39 @@ class AEntity {
 		virtual ~AEntity(void);
 };
 
-
+# include "Game.hpp"
 std::ostream& operator<<(std::ostream& out, AEntity const &i);
 
 struct Entity
 {
 	std::string path;
 	int	hp;
-	int	size; 
 	int	damageCost;
 	int style;
+	int	yMax; 
+	int	xMax; 
 };
 
 #define ENEMY_LEN 5 
 #define BULLET_LEN 3
 
+    // init_pair(0, COLOR_CYAN, COLOR_BLACK);
+    // init_pair(1, COLOR_RED, COLOR_BLACK); /* id, foreground, background */
+    // init_pair(2, COLOR_GREEN, COLOR_BLACK);
+    // init_pair(3, COLOR_BLUE, COLOR_BLACK);
+    // init_pair(4, COLOR_MAGENTA, COLOR_BLACK);
 static Entity entity[]  = {
-	{ "enemy1", 8, 4, 25, 0 },
-	{ "enemy2", 20, 12, 70, 0 },
-	{ "enemy3", 8, 4, 25, 0 },
-	{ "enemy4", 8, 4, 25, 0 },
-	{ "enemy5", 60, 13, 100, 0 },
-	{ "bullet1", 1, 1, 4, 0 },
-	{ "bullet2", 1, 2, 8, 0 },
-	{ "bullet3", 1, 3, 10, 0 },
-	{ "player", 100, 14, 10, 0 } // size may change
+	{ "enemy1", 8, 25, 1, 4, 6 },
+	{ "enemy2", 20, 70, 0, 4, 12 },
+	{ "enemy3", 8, 25, 3, 3, 9 },
+	{ "enemy4", 8, 25, 4, 3, 7 },
+	{ "enemy5", 60, 100, 0, 5, 13 },
+	{ "bullet1", 1, 4, 0, 1, 1 },
+	{ "bullet2", 1, 8, 0, 2, 2 },
+	{ "bullet3", 1, 10, 0, 3, 5 },
+	{ "player", 100, 10, 2, 6, 13 } // size may change
+	// { "bullet2", 1, 8, 0, 2, 2 },
+	// { "player", 100, 10, 2, 6, 13 } // size may change
 };
 
 #endif

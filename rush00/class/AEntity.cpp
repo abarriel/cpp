@@ -18,7 +18,9 @@ void AEntity::init(int i) {
 	this->y = 0;
 	this->style = entity[i].style;
 	this->live = false;
-	this->size = entity[i].size;
+	this->isNeg = true;
+	this->xMax = entity[i].xMax;
+	this->yMax = entity[i].yMax;
 	this->damageCost = entity[i].damageCost;
 }
 
@@ -28,6 +30,7 @@ AEntity::AEntity(Player *e) {
 	this->init(i);
     return ;
 }
+
 
 AEntity::AEntity(Enemy *e) {
 	int i = rands() % ENEMY_LEN;
@@ -44,14 +47,18 @@ AEntity::AEntity(Bullet *e, int u) {
 }
 
 void AEntity::getInfos() const {
+	int i = -1;
 	std::cout << "---------------------" << std::endl;
 	std::cout << "x: " << this->x << std::endl;
 	std::cout << "y: " << this->y << std::endl;
 	std::cout << "hp: " << this->hp << std::endl;
-	std::cout << "size: " << this->size << std::endl;
+	std::cout << "yMax: " << this->yMax << std::endl;
+	std::cout << "xMax: " << this->xMax << std::endl;
 	std::cout << "damageCost: " << this->damageCost << std::endl;
 	std::cout << "style: " << this->style << std::endl;
-	std::cout << "shape: " << std::endl << this->shape << std::endl;
+	std::cout << "shape: " << std::endl;
+	while (!this->shape[++i].empty())
+		std::cout << this->shape[i] << std::endl;
 	std::cout << "---------------------" << std::endl;
 }
 
@@ -62,33 +69,31 @@ void AEntity::takeDamage(int dama) {
 }
 
 // void attack(Enemy*);
+bool AEntity::update() {
+	std::cout << "AENTITY UPDATE" << std::endl;
+	return true;
+}
 // void attack(Player*);
-void AEntity::update(Enemy *e) {
-	(void)e;
-	// 
-}
-void AEntity::update(Player *p) {
-	(void)p;
-	// 
-}
-void AEntity::update(Bullet *b) {
-	(void)b;
-	// 
+bool AEntity::update(int x, int y, bool isNeg) {
+	(void)x;
+	(void)y;
+	(void)isNeg;
+	return true;
 }
 
 int AEntity::getX() const { return this->x; }
 int AEntity::getY() const { return this->y; }
 int AEntity::getHP() const { return this->hp; }
-int AEntity::getSize() const { return this->size; }
+int AEntity::getYmax() const { return this->yMax; }
+int AEntity::getXmax() const { return this->xMax; }
 int AEntity::getStyle() const { return this->style; }
 int AEntity::getDamageCost() const { return this->damageCost; }
-std::string AEntity::getShape() const { return this->shape; }
+std::string *AEntity::getShape() const { return this->shape; }
 bool AEntity::getLive() const { return this->live; }
 
 int& AEntity::setX() { return this->x; }
 int& AEntity::setY() { return this->y; }
 int& AEntity::setHP() { return this->hp; }
-int& AEntity::setSize() { return this->size; }
 int& AEntity::setStyle() { return this->style; }
 int& AEntity::setDamageCost() { return this->damageCost; }
 bool& AEntity::setLive() { return this->live; }
@@ -98,10 +103,12 @@ AEntity& AEntity::operator=(AEntity const & rhs) {
 	std::cout << "(AEntity) assignation operator called";
 	this->x = rhs.x;
 	this->y = rhs.y;
-	this->size = rhs.size;
+	this->xMax = rhs.xMax;
+	this->yMax = rhs.yMax;
 	this->hp = rhs.hp;
 	this->damageCost = rhs.damageCost;
 	this->live = rhs.live;
+	this->isNeg = rhs.isNeg;
 	this->shape = rhs.shape;
 	return *this;
 }
