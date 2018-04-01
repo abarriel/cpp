@@ -14,10 +14,6 @@ Bullet::Bullet(int i, bool e): AEntity::AEntity(this, i) {
 	// std::cout << "(Bullet) default constructor called" << std::endl;
     return ;
 }
-//  .  .
-// /\\//
-// > () <
-// \/()\/
 /* function members */
 bool Bullet::update() {
 	clock_t t = clock();
@@ -36,18 +32,14 @@ bool Bullet::update() {
 		return false;
 	}
 	else if ((this->y + this->yMax + y) > yMax || (this->y + y) < 0)
+	{
+		Game::instance()->deleleEntity(this);
 		return false;
+	}
 	else 
 		this->y += y;
 	return true;
 }
-
-// bool Bullet::update() {
-// 	// std::cout << "UPDATE" << std::endl;
-// 	if(Game::instance()->getEntity(this))
-// 		return false;
-// 	return t`rue;
-// }
 /* override */
 Bullet& Bullet::operator=(Bullet const & rhs) {
 	std::cout << "(Bullet) assignation operator called";

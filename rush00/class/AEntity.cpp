@@ -21,8 +21,6 @@ void AEntity::init(int i) {
 	this->isNeg = true;
 	this->xMax = entity[i].xMax;
 	this->yMax = entity[i].yMax;
-	this->lvl = 1;
-	this->score = 0;
 	this->damageCost = entity[i].damageCost;
 }
 
@@ -33,16 +31,21 @@ AEntity::AEntity(Player *e) {
     return ;
 }
 
+AEntity::AEntity(Enemy *e, int i) {
+	(void)e;
+	this->init( 5 + i);
+    return ;
+}
 
 AEntity::AEntity(Enemy *e) {
-	int i = rands() % ENEMY_LEN;
+	int i = rands() % 5;
 	(void)e;
 	this->init(i);
     return ;
 }
 
 AEntity::AEntity(Bullet *e, int u) {
-	int i = 5 + u;
+	int i = ENEMY_LEN + u;
 	(void)e;
 	this->init(i);
     return ;
@@ -92,11 +95,7 @@ int AEntity::getStyle() const { return this->style; }
 int AEntity::getDamageCost() const { return this->damageCost; }
 std::string *AEntity::getShape() const { return this->shape; }
 bool AEntity::getLive() const { return this->live; }
-int AEntity::getScore() const { return this->score; }
-int AEntity::getlvl() const { return this->lvl; }
 
-int& AEntity::setScore() { return this->score; }
-int& AEntity::setlvl()  { return this->lvl; }
 int& AEntity::setX() { return this->x; }
 int& AEntity::setY() { return this->y; }
 int& AEntity::setHP() { return this->hp; }

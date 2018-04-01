@@ -29,6 +29,8 @@ class Game {
 		bool end;
 		int maxEntity;
 		Node *e;
+		int lvl;
+		int score;
 		static Game *p_instance;
 	public:
 		/* Constructors - do not delete the default constructor (void) */
@@ -43,6 +45,7 @@ class Game {
 		void addEntity(AEntity* unit);
 		void deleleEntity(AEntity *unit);
 		AEntity *getEntity(AEntity *);
+		void boss();
 		// void updateEntity(Bullet *);
 		// void updateEntity(Enemy *);
 		// void updateEntity(Player *, int x, int y, bool isNeg);
@@ -50,6 +53,9 @@ class Game {
 		void init();
 		std::string *getFile(std::string s);		
 		void startMessage();
+		void endMessage();
+		void winMessage();
+		void printBG();
 
 		/* accessors */
 		Node* getEntity();
@@ -58,11 +64,15 @@ class Game {
 		int getY(void) const;
 		int getTicks(void) const;
 		int getDir(void) const;
+		int getScore() const;
+		int getlvl() const;
 		bool getEnd() const;
 		int getMaxEntity(void) const;
 		int& setMaxEntity(void);
 		int& setDir(void);
 		int& setX();
+		int& setlvl();
+		int& setScore();
 		int& setTicks();
 		int& setY();
 		bool& setEnd();

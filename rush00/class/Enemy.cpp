@@ -10,6 +10,14 @@ Enemy::Enemy(void): AEntity::AEntity(this) {
 	// std::cout << "(Enemy) default constructor called" << std::endl;
     return ;
 }
+Enemy::Enemy(int i): AEntity::AEntity(this, i) {
+	// srand (time(NULL));
+	// srand (time(NULL));
+    // const std::string name[7] = { "allan", "michael", "ilan", "chamo", "superman", "nek", "dracula" };
+	// AEntity::init(this, );
+	// std::cout << "(Enemy) default constructor called" << std::endl;
+    return ;
+}
 /* function members */
 bool Enemy::update(int x, int y, bool isNeg) {
 	x = (isNeg) ? -x : x;
@@ -39,6 +47,7 @@ bool Enemy::update() {
 	int yMax = Game::instance()->getY();
 	int mov_y = MOV_Y;
 	ti = (rand() % 100) + 100;
+	if(this->getDamageCost() > 10000) goto end;
 	if (this->getDamageCost() < 30 && !(Game::instance()->getTicks() % 20)) {
 		if ((this->y + this->yMax + mov_y) >= yMax)
 		{
@@ -53,7 +62,12 @@ bool Enemy::update() {
 		if ((this->x + this->xMax + mov_x) > xMax || (this->x + mov_x) < 0)
 			return false;
 		else
-			this->x += mov_x;	
+		{
+			if(!(ti % 3))
+				this->x += mov_x;	
+			else
+				this->x -= mov_x;	
+		}
 	}
 	if (this->getDamageCost() > 30 && !(Game::instance()->getTicks() % ti))
 	{
@@ -68,6 +82,7 @@ bool Enemy::update() {
 		Game::instance()->deleleEntity(this);
 		return false;
 	}
+	end:
 	if ((e = Game::instance()->getEntity(this)))
 	{
 		e->setHP() -= this->getDamageCost();
@@ -124,6 +139,24 @@ Enemy::Enemy(Enemy const & src) {
 
 /* Destructors */
 Enemy::~Enemy(void) {
-	// std::cout << "(Enemy) destructor Enemy called" << std::endl;
+	int direct;
+	if (this->hp <= 0)
+		Game::instance()->setScore() += 13;
+	if (this->damageCost == 99999998)
+	{
+		clear();
+		Game::instance()->winMessage();
+		refresh();
+		while (1)
+		{
+			direct = getch();
+			if (direct == 'q')
+			{
+				clear();
+				endwin();
+				exit(0);
+			}
+		}
+	}
     return ;
 }

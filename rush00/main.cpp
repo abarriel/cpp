@@ -10,9 +10,10 @@ void initNcurse() {
     init_pair(3, COLOR_BLUE, COLOR_BLACK);
     init_pair(4, COLOR_MAGENTA, COLOR_BLACK);
     init_pair(5, COLOR_YELLOW, COLOR_BLACK);
+    init_pair(6, COLOR_YELLOW, COLOR_CYAN);
 	// init_color(10, 234, 32, 39);	
 	// rgb(255, 195, 18)
-	init_color(10,0,255,95);
+	init_color(10,18, 137, 167);
 	init_pair(10, 10, COLOR_BLACK);	
 	noecho (); /* no print char */
 	curs_set(0); /* hide cursor */

@@ -19,12 +19,11 @@ class AEntity {
 		bool live; /* is alive */
 		bool isNeg;
 		std::string *shape; /* string */
-		int score;
-		int lvl;
 	public:
 		/* Constructors - do not delete the default constructor (void) */
 		AEntity(void);
 		AEntity(Enemy *);
+		AEntity(Enemy *, int);
 		AEntity(Player *);
 		AEntity(Bullet *, int);
 		void init(int i);		
@@ -33,8 +32,6 @@ class AEntity {
 		int getYmax() const;
 		int getY() const;
 		int getHP() const;
-		int getScore() const;
-		int getlvl() const;
 		int getStyle() const;
 		int getDamageCost() const;
 		std::string *getShape() const;
@@ -43,8 +40,6 @@ class AEntity {
 		virtual AEntity* clone() const = 0;	
 		int& setX();
 		int& setY();
-		int& setlvl();
-		int& setScore();
 		int& setHP();
 		int& setStyle();
 		int& setDamageCost();
@@ -79,7 +74,7 @@ struct Entity
 	int	xMax; 
 };
 
-#define ENEMY_LEN 5 
+#define ENEMY_LEN 8
 #define BULLET_LEN 3
 // rgb(234, 32, 39)
     // init_pair(0, COLOR_CYAN, COLOR_BLACK);
@@ -92,10 +87,13 @@ static Entity entity[]  = {
 	{ "enemy2", 20, 70, 3, 4, 12 },
 	{ "enemy3", 8, 25, 3, 3, 9 },
 	{ "enemy4", 8, 25, 4, 3, 7 },
-	{ "enemy5", 60, 100, 5, 5, 13 },
+	{ "enemy5", 40, 100, 5, 5, 13 },
+	{ "mur_left", 9999999, 9999999, 5, 84, 40 },
+	{ "mur_right", 9999999, 9999999, 5, 84, 40 },
+	{ "boss", 60, 99999998, 1, 62, 152 },
 	{ "bullet1", 1, 4, 0, 1, 1 },
 	{ "bullet2", 1, 8, 0, 2, 2 },
-	{ "bullet3", 1, 10, 0, 3, 5 },
+	{ "bullet3", 1, 14, 0, 3, 5 },
 	{ "player", 100, 10, 2, 6, 13 } // size may change
 };
 

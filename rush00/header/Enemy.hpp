@@ -9,6 +9,7 @@ class Enemy: public AEntity {
 	public:
 		/* Constructors - do not delete the default constructor (void) */
 		Enemy(void);
+		Enemy(int);
 
 		/* function members (or methods) */
 		Enemy* clone() const;

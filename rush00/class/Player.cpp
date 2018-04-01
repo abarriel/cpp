@@ -72,6 +72,22 @@ Player::Player(Player const & src) {
 
 /* Destructors */
 Player::~Player(void) {
-	std::cout << "(Player) destructor Player called" << std::endl;
+	int direct;
+	// std::cout << this->hp << std::endl;	
+	if(this->hp > 0)
+		return ;
+	clear();
+	Game::instance()->endMessage();
+	refresh();
+	while (1)
+	{
+		direct = getch();
+		if (direct == 'q')
+		{
+			clear();
+			endwin();
+			exit(0);
+		}
+	}
     return ;
 }
