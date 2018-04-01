@@ -24,7 +24,7 @@ class Enemy: public AEntity {
 		void attack(Player*);
 		
 		/* Destructors */
-		~Enemy(void);
+		virtual ~Enemy(void);
 };
 
 std::ostream& operator<<(std::ostream& out, Enemy const &i);

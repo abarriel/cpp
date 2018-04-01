@@ -22,7 +22,7 @@ class Player: public AEntity {
 		Player& operator=(Player const & rhs);
 
 		/* Destructors */
-		~Player(void);
+		virtual ~Player(void);
 };
 
 std::ostream& operator<<(std::ostream& out, Player const &i);

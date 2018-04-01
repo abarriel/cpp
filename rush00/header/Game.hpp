@@ -81,7 +81,7 @@ class Game {
 		Game& operator=(Game const & rhs);
 
 		/* Destructors */
-		~Game(void);
+		virtual ~Game(void);
 };
 std::ostream& operator<<(std::ostream& out, Game const &i);
 

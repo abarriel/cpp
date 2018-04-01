@@ -23,7 +23,7 @@ class Bullet: public AEntity {
 		void attack(Player*);
 		
 		/* Destructors */
-		~Bullet(void);
+		virtual ~Bullet(void);
 };
 
 std::ostream& operator<<(std::ostream& out, Bullet const &i);
