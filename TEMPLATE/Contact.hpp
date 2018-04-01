@@ -16,7 +16,7 @@ class Contact {
 		Contact& operator=(Contact const & rhs);
 
 		/* Destructors */
-		~Contact(void);
+		virtual ~Contact(void);
 };
 
 std::ostream& operator<<(std::ostream& out, Contact const &i);
