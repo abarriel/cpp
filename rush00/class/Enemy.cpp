@@ -55,8 +55,7 @@ bool Enemy::update() {
 			return false;
 		}
 		else
-			this->y += mov_y;
-		// if (mthis->x += mov_x;
+			this->y += ((rand() % mov_y) + 2);
 	}
 	if(!(Game::instance()->getTicks() % ti)) {
 		if ((this->x + this->xMax + mov_x) > xMax || (this->x + mov_x) < 0)

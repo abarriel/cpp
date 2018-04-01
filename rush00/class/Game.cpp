@@ -113,7 +113,7 @@ void Game::render() {
 	this->rmenu(); /* clear print menu and box */
 }
 
-# define POP_ENNEMY 6
+# define POP_ENNEMY 12
 # define SPEED_Y 2
 # define SPEED_X 4
 
@@ -219,7 +219,7 @@ void Game::update(int direction) {
 		}
 		bullet_ennemy = B_E;
 	}
-	else if (!(this->ticks % 400) && this->lvl < 4)
+	else if (!(this->ticks % 200) && this->lvl < 4)
 	{
 		while(enemy_creation--) {
 			AEntity *b = new Enemy();
