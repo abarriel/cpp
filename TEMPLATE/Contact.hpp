@@ -8,7 +8,13 @@ class Contact {
 	public:
 		/* Constructors - do not delete the default constructor (void) */
 		Contact(void);
-
+		// class ERROR: public std::exception {
+		// 	public:
+		// 		ERROR(void);
+		// 		ERROR(ERROR const & src);
+		// 		ERROR& operator=(ERROR const & rhs);
+		// 		virtual ~ERROR(void) throw();
+		//  };
 		/* function members (or methods) */
 
 		/* override */

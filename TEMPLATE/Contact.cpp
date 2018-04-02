@@ -7,7 +7,8 @@ Contact::Contact(void) {
 }
 
 /* function members */
-
+// Contact::ERROR::~ERROR(void) throw() { }
+// Contact::ERROR::ERROR(void) {  }
 /* override */
 Contact& Contact::operator=(Contact const & rhs) {
 	std::cout << "(Contact) assignation operator called";
