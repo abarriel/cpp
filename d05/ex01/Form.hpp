@@ -1,23 +1,25 @@
-#ifndef BUREAUCRAT_HPP
-# define BUREAUCRAT_HPP
+#ifndef FORM_HPP
+# define FORM_HPP
 # include <iostream>
-# include "Form.hpp"
-class Form;
-class Bureaucrat {
+# include "Bureaucrat.hpp"
+class Bureaucrat;
+class Form {
 	private:
-	protected:
-		Bureaucrat(void);
+		Form(void);
 		std::string const name;
-		int grade;
+		int const grade_sign;
+		int const grade_exec;
+		bool is_signed;
+	protected:
 	public:
 		/* Constructors - do not delete the default constructor (void) */
-		Bureaucrat(std::string name, int grade);
-		/* function members (or methods) */
+		Form(std::string,int,int);
 		class GradeTooHighException: public std::exception {
 			public:
 				GradeTooHighException(void);
 				GradeTooHighException(GradeTooHighException const & src);
 				GradeTooHighException& operator=(GradeTooHighException const & rhs);
+				virtual const char* what() const throw();
 				virtual ~GradeTooHighException(void) throw();
 		 };
 		class GradeTooLowException: public std::exception {
@@ -25,21 +27,23 @@ class Bureaucrat {
 				GradeTooLowException(void);
 				GradeTooLowException(GradeTooLowException const & src);
 				GradeTooLowException& operator=(GradeTooLowException const & rhs);
+				virtual const char* what() const throw();
 				virtual ~GradeTooLowException(void) throw();
 		};
+		/* function members (or methods) */
+		std::string getName() const;
+		int getGradeSign() const;
+		int getGradeExec() const;
+		bool getSigned() const;
+		void beSigned(Bureaucrat*);
 		/* override */
-		std::string getName()const;
-		int getGrade() const;
-		void incGrade();
-		void decGrade();
-		void signForm(Form*);
-		Bureaucrat(Bureaucrat const & src);
-		Bureaucrat& operator=(Bureaucrat const & rhs);
+		Form(Form const & src);
+		Form& operator=(Form const & rhs);
 
 		/* Destructors */
-		virtual ~Bureaucrat(void);
+		virtual ~Form(void);
 };
 
-std::ostream& operator<<(std::ostream& out, Bureaucrat const &i);
+std::ostream& operator<<(std::ostream& out, Form const &i);
 
 #endif

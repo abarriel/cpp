@@ -12,8 +12,20 @@ class Bureaucrat {
 		/* Constructors - do not delete the default constructor (void) */
 		Bureaucrat(std::string name, int grade);
 		/* function members (or methods) */
-		class GradeTooHighException: public std::exception { };
-		class GradeTooLowException: public std::exception { };
+		class GradeTooHighException: public std::exception {
+			public:
+				GradeTooHighException(void);
+				GradeTooHighException(GradeTooHighException const & src);
+				GradeTooHighException& operator=(GradeTooHighException const & rhs);
+				~GradeTooHighException(void) throw();
+		 };
+		class GradeTooLowException: public std::exception {
+			public:
+				GradeTooLowException(void);
+				GradeTooLowException(GradeTooLowException const & src);
+				GradeTooLowException& operator=(GradeTooLowException const & rhs);
+				~GradeTooLowException(void) throw();
+		};
 		/* override */
 		std::string getName()const;
 		int getGrade() const;
