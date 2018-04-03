@@ -19,14 +19,17 @@ OfficeBlock::forbidden::~forbidden(void) throw() { }
 OfficeBlock::forbidden::forbidden(void) {  }
 const char* OfficeBlock::forbidden::what() const throw() { return "forbidden to declare like that"; }
 
-void OfficeBlock::setIntern(Intern* i) { this->i = i; }
+void OfficeBlock::setIntern(Intern& i) { this->i = &i; }
 
-void OfficeBlock::setSigner(Bureaucrat* b) { this->b_e = b;}
+void OfficeBlock::setSigner(Bureaucrat& b) { this->b_s = &b;}
 
-void OfficeBlock::setExecutor(Bureaucrat* b) { this->b_e = b; }
+void OfficeBlock::setExecutor(Bureaucrat& b) { this->b_e = &b; }
 
 void OfficeBlock::doBureaucracy(std::string form, std::string target) {
-	this->i->makeFrom("presidentialPardon", "Bender");
+	Form *f;
+	f = this->i->makeFrom(form, target);
+	this->b_s->signForm(f);
+	this->b_e->executeForm(*f);
 }
 
 

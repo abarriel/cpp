@@ -47,6 +47,7 @@ Bureaucrat& Bureaucrat::operator=(Bureaucrat const & rhs) {
 }
 
 void Bureaucrat::signForm(Form* p) {
+	std::cout << this->name << " signs " << p->getName() << std::endl;
 	try {
 		p->beSigned(this);	
 		std::cout << this->name << " signs " << p->getName() << std::endl;

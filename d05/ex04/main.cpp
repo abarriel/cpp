@@ -2,27 +2,26 @@
 // #include "PresidentialPardonForm.hpp"
 // #include "RobotomyRequestForm.hpp"
 #include "Intern.hpp"
+#include "OfficeBlock.hpp"
+
 int main() {
-	Intern intern;
-	Form *r;
+	Intern      idiotOne;
+	Bureaucrat  hermes = Bureaucrat("Hermes Conrad", 22);
+	Bureaucrat  bob = Bureaucrat("Bobby Bobson", 3);
+	OfficeBlock ob;
+	ob.setIntern(idiotOne);
+	ob.setSigner(bob);
+	ob.setExecutor(hermes);
 	try {
-		r = intern.makeFrom("robotomy request", "Bender");	
-	} catch (std::exception& e) {
-		std::cout << "ERREUR HAPPEND: " << e.what() << std::endl;
+		ob.doBureaucracy("mutant pig termination", "Pigley");
 	}
+	catch (std::exception & e) {
+		std::cout << e.what() << std::endl;
+	} 
 	try {
-		r = intern.makeFrom("robotomyRequest", "Bender");	
-	} catch (std::exception& e) {
-		std::cout << "ERREUR HAPPEND: " << e.what() << std::endl;
+		ob.doBureaucracy("robotomyRequest", "Pigley");
 	}
-		try {
-		r = intern.makeFrom("presidentialPardon", "Bender");	
-	} catch (std::exception& e) {
-		std::cout << "ERREUR HAPPEND: " << e.what() << std::endl;
-	}
-		try {
-		r = intern.makeFrom("shrubbberyCreation", "Bender");	
-	} catch (std::exception& e) {
-		std::cout << "ERREUR HAPPEND: " << e.what() << std::endl;
-	}
+	catch (std::exception & e) {
+		std::cout << e.what() << std::endl;
+	} 
 }

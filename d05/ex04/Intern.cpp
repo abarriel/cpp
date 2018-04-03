@@ -25,6 +25,7 @@ Intern& Intern::operator=(Intern const & rhs) {
 Form *Intern::makeFrom(std::string name, std::string target) {
 	const std::string f[] = { "robotomyRequest", "presidentialPardon", "shrubbberyCreation"};
 	// yes it's bad
+	std::cout << "Intern will create a " << name << " Form targeted on " << target << std::endl;
 	if(name == f[0])
 	{
 		std::cout << "Intern creates " << name  << std::endl;

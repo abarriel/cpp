@@ -22,9 +22,9 @@ class OfficeBlock {
 				virtual const char* what() const throw();				
 				virtual ~forbidden(void) throw();
 		 };
-		void setIntern(Intern*);
-		void setSigner(Bureaucrat*);
-		void setExecutor(Bureaucrat*);
+		void setIntern(Intern&);
+		void setSigner(Bureaucrat&);
+		void setExecutor(Bureaucrat&);
 		void doBureaucracy(std::string, std::string);
 		// class ERROR: public std::exception {
 		// 	public:
