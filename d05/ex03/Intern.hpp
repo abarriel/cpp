@@ -17,6 +17,9 @@ class Intern {
 				virtual const char* what() const throw();				
 				virtual ~unknownForm(void) throw();
 		 };
+		Form *rrform(std::string name, std::string target);
+		Form *ppform(std::string name, std::string target);
+		Form *scform(std::string name, std::string target);
 		// class ERROR: public std::exception {
 		// 	public:
 		// 		ERROR(void);

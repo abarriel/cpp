@@ -1,31 +1,26 @@
 #ifndef CENTRALBUREAUCRACY_HPP
 # define CENTRALBUREAUCRACY_HPP
 # include <iostream>
-#include "Intern.hpp"
 #include "Bureaucrat.hpp"
+#include "OfficeBlock.hpp"
 
+struct node
+{
+	std::string target;
+	bool o;
+	node* next;
+};
 class CentralBureaucracy {
 	private:
-		Intern *i;
-		Bureaucrat *b_s;
-		Bureaucrat *b_e;
+		OfficeBlock ob[20];
+		node *target;		
 	protected:
 	public:
 		/* Constructors - do not delete the default constructor (void) */
 		CentralBureaucracy(void);
-		CentralBureaucracy(Intern*, Bureaucrat*, Bureaucrat*);
-		class forbidden: public std::exception {
-			public:
-				forbidden(void);
-				forbidden(forbidden const & src);
-				forbidden& operator=(forbidden const & rhs);
-				virtual const char* what() const throw();				
-				virtual ~forbidden(void) throw();
-		 };
-		void setIntern(Intern&);
-		void setSigner(Bureaucrat&);
-		void setExecutor(Bureaucrat&);
-		void doBureaucracy(std::string, std::string);
+		void feedOffice(Bureaucrat *b_s, Bureaucrat *b_e);
+		void queueUp(std::string name);
+		void doBureaucracy();
 		// class ERROR: public std::exception {
 		// 	public:
 		// 		ERROR(void);

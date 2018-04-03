@@ -1,42 +1,69 @@
 #include "CentralBureaucracy.hpp"
 
 /* Constructors */
-CentralBureaucracy::CentralBureaucracy(void): i(NULL), b_s(NULL), b_e(NULL) {
+CentralBureaucracy::CentralBureaucracy(void): target(NULL) {
 	std::cout << "(CentralBureaucracy) default constructor called" << std::endl;
     return ;
 }
 
-CentralBureaucracy::CentralBureaucracy(Intern* i, Bureaucrat* b_s, Bureaucrat* b_e): i(i), b_s(b_s), b_e(b_e) {
-	std::cout << "(CentralBureaucracy) default constructor called" << std::endl;
-    return ;
+void CentralBureaucracy::queueUp(std::string name) {
+	// std::cout <<  "push" << std::endl;
+	node *begin = this->target;
+	if (!target)
+		return ;
+	node *nw = new node();
+	nw->target = name;
+	nw->o = true;
+	nw->next = NULL;
+	if (!this->target) {
+			this->target = nw;
+			return;
+	}
+	while (this->target->next)
+		this->target = this->target->next;
+	this->target->next = nw;
+	this->target = begin;
+	return;
 }
 
-/* function members */
-// CentralBureaucracy::ERROR::~ERROR(void) throw() { }
-// CentralBureaucracy::ERROR::ERROR(void) {  }
-/* override */
-CentralBureaucracy::forbidden::~forbidden(void) throw() { }
-CentralBureaucracy::forbidden::forbidden(void) {  }
-const char* CentralBureaucracy::forbidden::what() const throw() { return "forbidden to declare like that"; }
-
-void CentralBureaucracy::setIntern(Intern& i) { this->i = &i; }
-
-void CentralBureaucracy::setSigner(Bureaucrat& b) { this->b_s = &b;}
-
-void CentralBureaucracy::setExecutor(Bureaucrat& b) { this->b_e = &b; }
-
-void CentralBureaucracy::doBureaucracy(std::string form, std::string target) {
-	Form *f;
-	f = this->i->makeFrom(form, target);
-	this->b_s->signForm(f);
-	this->b_e->executeForm(*f);
+void CentralBureaucracy::feedOffice(Bureaucrat *b_s, Bureaucrat *b_e) {
+	// dump 
+	int i;
+	i = 0;
+	for(; i < 20; i++) {
+		if(!this->ob[i].getBE() && !this->ob[i].getBS())
+		{
+			Intern  *idiotOne = new Intern();
+			this->ob[i].setIntern(*idiotOne);
+			this->ob[i].setExecutor(*b_e);
+			this->ob[i].setSigner(*b_s);
+			return ;
+		}
+	}
+	std::cout << "Bureaucrat is full, I reject you" << std::endl;
 }
 
+std::string getTarget(node *t) {
+	while(t) {
+		if(t->o)
+		 {
+			 t->o = false;
+			 return t->target;
+		 }
+		t = t->next;
+	}
+	return "targetEmpty";
+}
+
+void CentralBureaucracy::doBureaucracy() {
+	const std::string f[] = { "robotomyRequest", "presidentialPardon", "shrubbberyCreation"};
+	for (int i = 0; i < 10; i++) 
+		this->ob[i].doBureaucracy(f[i % 3], getTarget(this->target));
+}
 
 CentralBureaucracy& CentralBureaucracy::operator=(CentralBureaucracy const & rhs) {
 	std::cout << "(CentralBureaucracy) assignation operator called";
 	(void)rhs;
-	throw CentralBureaucracy::forbidden();
 	return *this;
 }
 
@@ -48,7 +75,6 @@ std::ostream& operator<<(std::ostream& out, CentralBureaucracy const &i) {
 
 CentralBureaucracy::CentralBureaucracy(CentralBureaucracy const & src) {
 	(void)src;
-	throw CentralBureaucracy::forbidden();
 }
 
 /* Destructors */

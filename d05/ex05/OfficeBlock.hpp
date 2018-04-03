@@ -25,6 +25,8 @@ class OfficeBlock {
 		void setIntern(Intern&);
 		void setSigner(Bureaucrat&);
 		void setExecutor(Bureaucrat&);
+		Bureaucrat *getBS();
+		Bureaucrat *getBE();
 		void doBureaucracy(std::string, std::string);
 		// class ERROR: public std::exception {
 		// 	public:

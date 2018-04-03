@@ -20,10 +20,18 @@ OfficeBlock::forbidden::forbidden(void) {  }
 const char* OfficeBlock::forbidden::what() const throw() { return "forbidden to declare like that"; }
 
 void OfficeBlock::setIntern(Intern& i) { this->i = &i; }
+Bureaucrat *OfficeBlock::getBS() { return this->b_s; }
+Bureaucrat *OfficeBlock::getBE() { return this->b_e; }
 
-void OfficeBlock::setSigner(Bureaucrat& b) { this->b_s = &b;}
+void OfficeBlock::setSigner(Bureaucrat& b) { 
+	// std::cout << "setSigner added " << std::endl;
+	this->b_s = &b;
+}
 
-void OfficeBlock::setExecutor(Bureaucrat& b) { this->b_e = &b; }
+void OfficeBlock::setExecutor(Bureaucrat& b) { 
+	// std::cout << "setExecutor added " << std::endl;
+	this->b_e = &b;
+}
 
 void OfficeBlock::doBureaucracy(std::string form, std::string target) {
 	Form *f;

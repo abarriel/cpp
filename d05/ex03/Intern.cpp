@@ -21,27 +21,30 @@ Intern& Intern::operator=(Intern const & rhs) {
 	(void)rhs;
 	return *this;
 }
+Form *Intern::rrform(std::string name, std::string target){
+	std::cout << "Intern creates " << name << std::endl;
+	return new RobotomyRequestForm(target); 
+}
+Form *Intern::ppform(std::string name, std::string target){
+	std::cout << "Intern creates " << name << std::endl;
+	return new PresidentialPardonForm(target); 
+}
+Form *Intern::scform(std::string name, std::string target){
+	std::cout << "Intern creates " << name << std::endl;
+	return new ShrubberyCreationForm(target); 
+}
 
 Form *Intern::makeFrom(std::string name, std::string target) {
 	const std::string f[] = { "robotomyRequest", "presidentialPardon", "shrubbberyCreation"};
-	// yes it's bad
-	if(name == f[0])
-	{
-		std::cout << "Intern creates " << name  << std::endl;
-		return new RobotomyRequestForm(target);
-	}
-	if(name == f[1])
-	{
-		std::cout << "Intern creates " << name  << std::endl;
-		return new PresidentialPardonForm(target);
-	}
-	if(name == f[2])
-	{
-		std::cout << "Intern creates " << name  << std::endl;
-		return new ShrubberyCreationForm(target);
-	}
-	else
-		throw Intern::unknownForm();
+	typedef Form*(Intern::*actions)(std::string, std::string);
+    actions action[] = { &Intern::rrform, &Intern::ppform, &Intern::scform };
+
+    for(int i = 0; i < 3; i++)
+    {
+		if(name == f[i])
+			return (this->*action[i])(name, target);
+    }
+	throw Intern::unknownForm();
 }
 
 std::ostream& operator<<(std::ostream& out, Intern const &i) {
