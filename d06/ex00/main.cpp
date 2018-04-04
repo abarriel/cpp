@@ -20,13 +20,14 @@ int		main(int ac, char **av)
 	/* char */
 	std::cout << "char: ";
 	char c = static_cast<char>(a);
-	if (s.fail()) std::cout << "impossible" << std::endl;
+	if (s.fail() || a < 0 || a > 255) std::cout << "impossible" << std::endl;
 	else if (c < 33 || c > 126) std::cout << "Non displayable" << std::endl;
 	else std::cout << c << std::endl;
 
 	/* int */
 	std::cout << "int: ";
-	if (s.fail() || a != a || std::isinf(a)) std::cout << "impossible" << std::endl;
+	if (s.fail()) std::cout << "nan" << std::endl;
+	else if ( a != a || std::isinf(a)) std::cout << "impossible" << std::endl;
 	else std::cout << static_cast<int>(a) << std::endl;
 
 	/* float */
