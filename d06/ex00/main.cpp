@@ -21,7 +21,7 @@ int		main(int ac, char **av)
 	std::cout << "char: ";
 	char c = static_cast<char>(a);
 	if (s.fail() || a != a || a < 0 || a > 255) std::cout << "impossible" << std::endl;
-	else if (c < 33 || c > 126) std::cout << "Non displayable" << std::endl;
+	else if (c < 32 || c > 127) std::cout << "Non displayable" << std::endl;
 	else std::cout << '\'' << c <<  '\'' << std::endl;
 
 	/* int */
