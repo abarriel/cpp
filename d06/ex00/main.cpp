@@ -20,9 +20,9 @@ int		main(int ac, char **av)
 	/* char */
 	std::cout << "char: ";
 	char c = static_cast<char>(a);
-	if (s.fail() || a < 0 || a > 255) std::cout << "impossible" << std::endl;
+	if (s.fail() || a != a || a < 0 || a > 255) std::cout << "impossible" << std::endl;
 	else if (c < 33 || c > 126) std::cout << "Non displayable" << std::endl;
-	else std::cout << c << std::endl;
+	else std::cout << '\'' << c <<  '\'' << std::endl;
 
 	/* int */
 	std::cout << "int: ";
