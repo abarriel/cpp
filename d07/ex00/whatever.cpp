@@ -1,28 +1,11 @@
 #include <iostream>
-class Awesome {
-
-public:
-
-Awesome( int n ) : _n( n ) {}
-
-bool operator==( Awesome const & rhs ) { return (this->_n == rhs._n); }
-bool operator!=( Awesome const & rhs ) { return (this->_n != rhs._n); }
-bool operator>( Awesome const & rhs ) { return (this->_n > rhs._n); }
-bool operator<( Awesome const & rhs ) { return (this->_n < rhs._n); }
-bool operator>=( Awesome const & rhs ) { return (this->_n >= rhs._n); }
-bool operator<=( Awesome const & rhs ) { return (this->_n <= rhs._n); }
-
-private:
-
-int _n;
-};
 
 template<typename T>
-T const & max(T const & x, T const & y) { return ( (y >= x) ? y : x ); }
+T  & max(T  & x, T  & y) { return ( (y >= x) ? y : x ); }
 // template<typename T>
 // T  & max(T  & x, T  & y) { return ( (y >= x) ? y : x ); }
 template<typename T>
-T const & min(T const & x, T const & y) { return ( (y >= x) ? y : x ); }
+T  & min(T  & x, T  & y) { return ( (y >= x) ? y : x ); }
 // template<typename T>
 // T  & min(T  & x, T  & y) { return ( (y <= x) ? y : x ); }
 
@@ -56,23 +39,22 @@ int main(void) {
 	std::cout << "1:" << f1 <<  " - 2:" << f2 << std::endl << std::endl;
 
 	std::cout << "1:" << c1 <<  " - 2:" << c2 << std::endl;
-
-	max(Awesome(45), Awesome(46));
+	swap(c1,c2);
 	std::cout << "1:" << c1 <<  " - 2:" << c2 << std::endl << std::endl;
 
-	i = max(1, 2);
+	i = max(i1, i2);
 	std::cout << i << std::endl;
-	i = min(1, 2);
+	i = min(i1, i2);
 	std::cout << i << std::endl;
 
-	f = max(1.5f, 2.5f);
+	f = max(f1, f2);
 	std::cout << f << std::endl;
-	f = min(1.5f, 0.0f);
+	f = min(f1, f2);
 	std::cout << f << std::endl;
 
-	c = max('a', 'b');
+	c = max(c1, c2);
 	std::cout << c << std::endl;
-	c = min('a', 'b');
+	c = min(c1, c2);
 	std::cout << c << std::endl;
 	return 0;
 }
