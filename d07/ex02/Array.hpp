@@ -24,7 +24,7 @@ class Array {
 			return *this;
 		}
 		T& operator[](unsigned int idx) const {
-			if(idx > this->_size)
+			if(idx >= this->_size)
 				throw std::exception();
 			return this->_array[idx];
 		}
