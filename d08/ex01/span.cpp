@@ -1,64 +1,69 @@
 #include "span.hpp"
-#include <algorithm>
 #include <vector>
-/* Constructors */
-span::span(unsigned int n): N(n) {
-	std::cout << "(span) default constructor called" << std::endl;
-    return ;
+#include <algorithm>
+#include <iostream>
+
+Span::Span(void) {}
+
+Span::Span(unsigned int n) : _range(std::vector<int>(n)), _n(0) {}
+
+Span::~Span(void) {}
+
+Span::Span(Span const & o)
+{
+	*this = o;
 }
 
-void span::addNumber(int ne) {
-	if (this->_n.size() == this->N)
-		throw std::bad_exception();
-	this->_n.push_back(ne);
-	std::sort(this->_n.begin(), this->_n.end());
-}
-
-int span::shortestSpan() {
-	if(this->_n.size() < 2)
-		throw std::bad_exception();
-	unsigned int small = -1;
-	unsigned int tmp;
-	for(std::vector<int>::iterator it = this->_n.begin(); it != this->_n.end(); ++it) {
-		if ((it + 1) == this->_n.end())
-			break;
-		tmp = (*(it + 1) - *it);
-		if(tmp < small)
-			small =tmp;
-	}
-	return small;
-}
-
-std::vector<int>& span::getN() {
-	return this->_n;
-}
-
-int span::longestSpan() {
-	if(this->_n.size() < 2)
-		throw std::bad_exception();
-	return(*std::max_element(this->_n.begin(), this->_n.end()) -  *std::min_element(this->_n.begin(), this->_n.end()));
-}
-
-span& span::operator=(span const & rhs) {
-	std::cout << "(span) assignation operator called";
-    this->_n.assign(rhs._n.begin(), rhs._n.end());
+Span & Span::operator=(Span const & rhs)
+{
+	this->_n = rhs._n;
+	this->_range = rhs._range;
 	return *this;
 }
 
-std::ostream& operator<<(std::ostream& out, span const &i) {
-	out << "(span) WARNING ! ADD A LOGIC <<" << std::endl;
-	static_cast<void>(i);
-	return out;
+void	Span::addNumber(std::vector<int>::iterator begin, std::vector<int>::iterator end)
+{
+	for (std::vector<int>::iterator it = begin; it != end; it++)
+		this->addNumber(*it);
 }
 
-span::span(span const & src) {
-	std::cout << "(span) copy constructor called" << std::endl;
-	*this = src;
-    return ;
+void	Span::addNumber(int n)
+{
+	if (this->_range.size() == this->_n)
+		throw ( std::range_error("range overflow") );
+	this->_range[this->_n] = n;
+	this->_n += 1;
+	std::sort (this->_range.begin(), this->_range.begin() + this->_n);
 }
 
-/* Destructors */
-span::~span(void) {
-	std::cout << "(span) destructor span called" << std::endl;
-    return ;
+unsigned int		Span::longestSpan(void)
+{
+	if (this->_n < 2)
+		throw (std::exception() );
+	int max = * std::max_element( this->_range.begin(), this->_range.begin() + this->_n);
+	int min = * std::min_element( this->_range.begin(), this->_range.begin() + this->_n);
+	return max - min;
+}
+
+void	Span::print(void)
+{
+	for (std::vector<int>::iterator it = this->_range.begin(); it  != this->_range.begin() + this->_n; it++)
+		std::cout << *it << " ";
+	std::cout << std::endl;
+}
+
+unsigned int		Span::shortestSpan(void)
+{
+	if (this->_n < 2)
+		throw (std::exception());
+	unsigned int min = ( * (this->_range.begin() + 1) - ( * this->_range.begin() ) );
+	for (std::vector<int>::iterator it = this->_range.begin() + 1;
+		it != this->_range.begin() + this->_n - 1;
+		it++)
+	{
+		unsigned int tmp = (*(it + 1) - *it);
+		if (tmp < min)
+			min = tmp;
+	}
+	return min;
 }
